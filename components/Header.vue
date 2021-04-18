@@ -10,13 +10,13 @@
 .header {
   // background-color: $primary-bgcolor-1;
   // display: flex;
-  padding: 0.8rem 1.5rem;
+  padding: 0.8rem 0.5rem;
   // justify-content: space-between;
   // align-items: center;
 
   .logo {
-    width: 100px;
-    height: 45px;
+    width: 85px;
+    height: 38px;
     object-fit: contain;
     cursor: pointer;
   }
