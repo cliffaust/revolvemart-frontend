@@ -1,6 +1,7 @@
 <template>
   <div class="header">
-    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B3.svg" alt="Logo" />
+    <!-- <img class="logo" src="~/assets/logo/revolvemart-LOGO-B1.png" alt="Logo" /> -->
+    <div class="logo"></div>
   </div>
 </template>
 
@@ -15,10 +16,16 @@
   // align-items: center;
 
   .logo {
-    width: 85px;
-    height: 38px;
-    object-fit: contain;
-    cursor: pointer;
+    // width: 120px;
+    // height: 60px;
+    // object-fit: cover;
+    // cursor: pointer;
+    background-image: url(~/assets/logo/revolvemart-LOGO-B1.png);
+    background-size: cover;
+    background-position: center;
+
+    height: 50px;
+    width: 160px;
   }
 
   .sign-in-btn {
