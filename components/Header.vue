@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B3.png" alt="Logo" />
+    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B2.png" alt="Logo" />
   </div>
 </template>
 
@@ -10,13 +10,13 @@
 .header {
   // background-color: $primary-bgcolor-1;
   // display: flex;
-  padding: 0.8rem 0.5rem;
+  padding: 0.8rem 1rem;
   // justify-content: space-between;
   // align-items: center;
 
   .logo {
-    width: 85px;
-    height: 38px;
+    width: 100px;
+    height: 30px;
     object-fit: contain;
     cursor: pointer;
   }
