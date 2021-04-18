@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B2.png" alt="Logo" />
+    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B2.svg" alt="Logo" />
   </div>
 </template>
 
@@ -15,8 +15,8 @@
   // align-items: center;
 
   .logo {
-    width: 100px;
-    height: 30px;
+    width: 150px;
+    height: 20px;
     object-fit: contain;
     cursor: pointer;
   }
