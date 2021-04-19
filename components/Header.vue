@@ -11,7 +11,6 @@
 .header {
   // background-color: $primary-bgcolor-1;
   // display: flex;
-  padding: 0.8rem 0.5rem;
   // justify-content: space-between;
   // align-items: center;
 
@@ -20,12 +19,12 @@
     // height: 60px;
     // object-fit: cover;
     // cursor: pointer;
-    background-image: url(~/assets/logo/revolvemart-LOGO-B1.png);
-    background-size: cover;
+    background-image: url(~/assets/logo/revolvemart-LOGO-B4.png);
+    background-size: contain;
     background-position: center;
 
-    height: 50px;
-    width: 160px;
+    height: 90px;
+    width: 120px;
   }
 
   .sign-in-btn {
