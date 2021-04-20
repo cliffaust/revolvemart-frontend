@@ -1,10 +1,18 @@
 <template>
   <div class="header">
     <img class="logo" src="~/assets/logo/revolvemart-LOGO-B3.png" alt="Logo" />
+    <burger></burger>
   </div>
 </template>
 
-<script></script>
+<script>
+import burger from '~/components/burger'
+export default {
+  components: {
+    burger,
+  },
+}
+</script>
 
 <style lang="scss" scoped>
 .header {
@@ -12,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 0.5rem;
+  padding: 0.8rem 2rem;
 
   .logo {
     width: 65px;
