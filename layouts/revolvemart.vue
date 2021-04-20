@@ -17,6 +17,11 @@ html {
   font-size: 62.5%;
 }
 
+.noSelect {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
 body {
   font-family: $primary-font;
   color: $primary-text-color;

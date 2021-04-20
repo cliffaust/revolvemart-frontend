@@ -2,7 +2,7 @@
   <div>
     <input id="nav-toggle" type="checkbox" class="navigation-checkbox" />
     <label for="nav-toggle" class="navigation-icon">
-      <div class="burger"></div>
+      <div class="burger noSelect"></div>
     </label>
   </div>
 </template>

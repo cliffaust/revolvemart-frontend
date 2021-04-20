@@ -1,6 +1,10 @@
 <template>
   <div class="header">
-    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B3.png" alt="Logo" />
+    <img
+      class="logo noSelect"
+      src="~/assets/logo/revolvemart-LOGO-B3.png"
+      alt="Logo"
+    />
     <burger></burger>
   </div>
 </template>
