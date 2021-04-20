@@ -1,7 +1,6 @@
 <template>
   <div class="header">
-    <!-- <img class="logo" src="~/assets/logo/revolvemart-LOGO-B1.png" alt="Logo" /> -->
-    <div class="logo"></div>
+    <img class="logo" src="~/assets/logo/revolvemart-LOGO-B3.png" alt="Logo" />
   </div>
 </template>
 
@@ -9,22 +8,17 @@
 
 <style lang="scss" scoped>
 .header {
-  // background-color: $primary-bgcolor-1;
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
+  //background-color: $primary-bgcolor-1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0.5rem;
 
   .logo {
-    // width: 120px;
-    // height: 60px;
-    // object-fit: cover;
-    // cursor: pointer;
-    background-image: url(~/assets/logo/revolvemart-LOGO-B4.png);
-    background-size: contain;
-    background-position: center;
-
-    height: 90px;
-    width: 120px;
+    width: 65px;
+    height: 40px;
+    object-fit: cover;
+    cursor: pointer;
   }
 
   .sign-in-btn {
