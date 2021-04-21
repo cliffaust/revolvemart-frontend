@@ -1,17 +1,32 @@
 <template>
   <div class="header">
-    <burger></burger>
-    <img
-      class="logo noSelect"
-      src="~/assets/logo/revolvemart-LOGO-B3.png"
-      alt="Logo"
-    />
-    <div class="shopping-cart-icon-container noSelect">
-      <font-awesome-icon
-        :icon="['fas', 'shopping-cart']"
-        class="shopping-cart-icon"
+    <div class="navbar">
+      <burger></burger>
+      <img
+        class="logo noSelect"
+        src="~/assets/logo/revolvemart-LOGO-B3.png"
+        alt="Logo"
       />
-      <div class="number-in-cart">2</div>
+      <div class="shopping-cart-icon-container noSelect">
+        <font-awesome-icon
+          :icon="['fas', 'shopping-cart']"
+          class="shopping-cart-icon"
+        />
+        <div class="number-in-cart">2</div>
+      </div>
+    </div>
+    <div class="search">
+      <input
+        type="text"
+        placeholder="Search Revolvemart"
+        class="searchbar-input"
+      />
+      <button class="search-btn">
+        <font-awesome-icon
+          :icon="['fas', 'search']"
+          class="shopping-cart-icon"
+        />
+      </button>
     </div>
   </div>
 </template>
@@ -26,8 +41,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
-  //background-color: $primary-bgcolor-1;
+.navbar {
+  // background-color: $primary-bgcolor-1;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -86,60 +101,74 @@ export default {
   }
 }
 
-.user-profile-options {
-  background-color: #fff;
+.search {
+  padding: 1rem 2rem;
+  position: relative;
   display: flex;
-  width: 100%;
-  flex-direction: column;
-  position: absolute;
-  z-index: 20;
-  box-shadow: 0px 25px 24px -2px rgba(0, 0, 0, 0.15);
 
-  &::after {
-    content: '';
-    border-left: 1.3rem solid transparent;
-    border-right: 1.3rem solid transparent;
-    border-top: 1.3rem solid transparent;
-    border-bottom: 1.3rem solid #fff;
-    position: absolute;
-    top: -10%;
-    right: 4px;
-    transform: translateX(-50%);
+  .searchbar-input {
+    width: 100%;
+    border: 3px solid $primary-bgcolor-1;
+    border-right: none;
+    padding: 15px 5px;
+    height: 20px;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    font-family: inherit;
+    color: #9dbfaf;
+
+    &:focus {
+      color: $primary-bgcolor-1;
+    }
   }
 
-  .profile,
-  .my-home,
-  .account-setting,
-  .signout {
-    font-size: 1.6rem;
-    font-weight: 600;
-    padding: 1.3rem 0.8rem;
-    transition: 0.2s ease;
+  .search-btn {
+    width: 40px;
+    height: 36px;
+    border: 1px solid $primary-bgcolor-1;
+    background: $primary-bgcolor-1;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
     cursor: pointer;
-    z-index: 20;
-
-    &:hover {
-      background-color: $dark-gray;
-    }
-  }
-
-  .account-setting {
-    margin-bottom: 1rem;
-  }
-
-  .signout {
-    position: relative;
-    margin-top: 1rem;
-    &::before {
-      content: '';
-      width: 100%;
-      height: 1px;
-      background-color: $dark-gray;
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: -10px;
-    }
+    font-size: 20px;
   }
 }
+
+// .search {
+//   margin-top: 1rem;
+//   width: 90%;
+//   display: flex;
+//   justify-content: space-around;
+
+//   .searchbar-input {
+//     padding: 0.8rem;
+//     border: 1px solid $primary-bgcolor-1;
+//     border-radius: 5px;
+//     position: relative;
+//     width: 100%;
+
+//     &:focus {
+//       outline: none;
+//     }
+//   }
+
+//   .search-btn {
+//     position: absolute;
+//     padding: 0.8rem 1.2rem;
+//     background-color: $primary-bgcolor-2;
+//     border: 1px solid $color-white;
+//     color: $color-white;
+//     font-size: 1.6rem;
+//     font-weight: 700;
+//     transition: 0.2s ease;
+//     border-radius: 0.6rem;
+//     cursor: pointer;
+//     right: 40px;
+
+//     &:focus {
+//       outline: none;
+//     }
+//   }
+// }
 </style>
