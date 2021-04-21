@@ -49,6 +49,7 @@ export default {
     .shopping-cart-icon {
       width: 100%;
       height: 100%;
+      color: $primary-bgcolor-1;
     }
 
     .number-in-cart {

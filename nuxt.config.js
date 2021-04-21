@@ -31,7 +31,6 @@ export default {
   plugins: [
     {
       src: '~/plugins/fontawesome.js',
-      mode: 'client',
     },
   ],
 
