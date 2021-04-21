@@ -1,11 +1,18 @@
 <template>
   <div class="header">
+    <burger></burger>
     <img
       class="logo noSelect"
       src="~/assets/logo/revolvemart-LOGO-B3.png"
       alt="Logo"
     />
-    <burger></burger>
+    <div class="shopping-cart-icon-container noSelect">
+      <font-awesome-icon
+        :icon="['fas', 'shopping-cart']"
+        class="shopping-cart-icon"
+      />
+      <div class="number-in-cart">2</div>
+    </div>
   </div>
 </template>
 
@@ -31,6 +38,33 @@ export default {
     height: 40px;
     object-fit: cover;
     cursor: pointer;
+  }
+
+  .shopping-cart-icon-container {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
+
+    .shopping-cart-icon {
+      width: 100%;
+      height: 100%;
+    }
+
+    .number-in-cart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: -10px;
+      left: 15px;
+      font-weight: bold;
+      // padding: 1rem 1rem;
+      background-color: $primary-bgcolor-2;
+      border-radius: 100%;
+    }
   }
 
   .sign-in-btn {
