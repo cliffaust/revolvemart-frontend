@@ -3,19 +3,27 @@
     <div class="image-box">
       <img class="item-image" :src="imagePath" alt="Book Image" />
     </div>
-    <div class="title">
-      {{ bookName }}
-    </div>
+    <div class="title-author-price">
+      <div class="title">
+        {{ bookName }}
+      </div>
 
-    <div class="author">By {{ author }}</div>
+      <div>
+        <div class="author">By {{ author }}</div>
 
-    <div class="price-box">
-      <div v-if="newPrice" class="new-price">GH¢{{ newPrice }}</div>
-      <div
-        class="price"
-        :style="[newPrice ? { 'text-decoration': 'line-through' } : '']"
-      >
-        GH¢{{ price }}
+        <div class="price-box">
+          <div v-if="newPrice" class="new-price">GH¢{{ newPrice }}</div>
+          <div
+            class="price"
+            :style="[
+              newPrice
+                ? { 'text-decoration': 'line-through', color: '#e63947' }
+                : '',
+            ]"
+          >
+            GH¢{{ price }}
+          </div>
+        </div>
       </div>
     </div>
     <div v-if="discountPercent" class="discount-percent">
@@ -90,17 +98,18 @@ export default {
 .title {
   font-size: 1.6rem;
   font-weight: bold;
-  // height: 40px;
-  // //width: 140px;
-  // text-overflow: ellipsis;
-  // white-space: nowrap;
-  // overflow: hidden;
-  // background-color: green;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.title-author-price {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 80px;
 }
 
 .discount-percent {
