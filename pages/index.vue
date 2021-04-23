@@ -1,14 +1,17 @@
 <template>
   <div>
     <Header></Header>
+    <Recommendation></Recommendation>
   </div>
 </template>
 
 <script>
-import Header from '~/components/Header'
+import Header from '~/components/HomeComponent/Header'
+import Recommendation from '~/components/HomeComponent/Recommendation'
 export default {
   components: {
     Header,
+    Recommendation,
   },
 }
 </script>
