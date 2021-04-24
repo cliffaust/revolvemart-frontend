@@ -32,6 +32,10 @@ export default {
     {
       src: '~/plugins/fontawesome.js',
     },
+    {
+      src: '~/plugins/swiper.js',
+      mode: 'client',
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

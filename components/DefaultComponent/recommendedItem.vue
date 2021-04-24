@@ -5,7 +5,7 @@
     </div>
     <div class="title-author-price">
       <div class="title">
-        {{ bookName }}
+        {{ bookTitle }}
       </div>
 
       <div>
@@ -47,7 +47,7 @@ export default {
       required: true,
     },
 
-    bookName: {
+    bookTitle: {
       type: String,
       required: true,
     },
@@ -78,9 +78,10 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-left: 0.5rem;
+  // margin-left: 0.5rem;
   margin-top: 1.5em;
-  width: 150px;
+  width: 100%;
+  height: 100%;
   padding: 0.5rem;
   border-radius: 1rem;
   position: relative;
