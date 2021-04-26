@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="text">This Week Bestsellers</div>
+    <div class="text">This Week's Bestsellers</div>
     <client-only>
       <div v-swiper="swiperOption" class="swiper-container">
         <div class="swiper-wrapper">
