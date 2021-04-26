@@ -5,60 +5,60 @@
       <div v-swiper="swiperOption" class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book1.jpg')"
               :price="25.99"
               :new-price="22.99"
               book-title="The Programming Coventions"
               author="J.J Lorem"
               :discount-percent="20"
-            ></RecommendedItem>
+            ></Item>
           </div>
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book8.jpg')"
               :price="19.99"
               book-title="My Dark Vanessa"
               author="Kate Elizabeth"
-            ></RecommendedItem>
+            ></Item>
           </div>
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book6.jpg')"
               :price="41.99"
               :new-price="38.49"
               book-title="Deacon King Kong"
               author="James McBride"
               :discount-percent="10"
-            ></RecommendedItem>
+            ></Item>
           </div>
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book4.jpg')"
               :price="52"
               :new-price="42"
               book-title="Hands-On Machine Learning with Scikit-Learn and Keras"
               author="Aureilien Gideon"
               :discount-percent="15"
-            ></RecommendedItem>
+            ></Item>
           </div>
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book7.jpg')"
               :price="29"
               book-title="Hamnet"
               author="Kate Maggie"
-            ></RecommendedItem>
+            ></Item>
           </div>
           <div class="swiper-slide">
-            <RecommendedItem
+            <Item
               :image-path="require('~/assets/logo/book3.jpg')"
               :price="67.32"
               :new-price="50"
               book-title="Algorithms"
               author="Jake Peter"
               :discount-percent="19"
-            ></RecommendedItem>
+            ></Item>
           </div>
         </div>
       </div>
@@ -67,10 +67,10 @@
 </template>
 
 <script>
-import RecommendedItem from '~/components/DefaultComponent/recommendedItem'
+import Item from '~/components/DefaultComponent/item'
 export default {
   components: {
-    RecommendedItem,
+    Item,
   },
   data() {
     return {
@@ -91,8 +91,8 @@ export default {
   padding: 0.8rem;
   margin-left: 1rem;
   position: relative;
-  font-weight: 600;
-  font-size: 2.5rem;
+  font-weight: 800;
+  font-size: 2.1rem;
 
   &::after {
     content: '';
@@ -118,9 +118,5 @@ export default {
 
 .swiper-container {
   height: 300px;
-}
-
-.recommended-items-container {
-  display: flex;
 }
 </style>

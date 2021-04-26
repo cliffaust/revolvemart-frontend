@@ -6,7 +6,7 @@
       class="searchbar-input"
     />
     <button class="search-btn">
-      <font-awesome-icon :icon="['fas', 'search']" class="shopping-cart-icon" />
+      <font-awesome-icon :icon="['fas', 'search']" class="search-icon" />
     </button>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {}
     border-radius: 5px 0 0 5px;
     outline: none;
     font-family: inherit;
-    color: #9dbfaf;
+    color: $primary-bgcolor-1;
 
     &:focus {
       color: $primary-bgcolor-1;
@@ -47,6 +47,14 @@ export default {}
     border-radius: 0 5px 5px 0;
     cursor: pointer;
     font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search-icon {
+      width: 20px;
+      height: 20px;
+    }
   }
 }
 </style>
