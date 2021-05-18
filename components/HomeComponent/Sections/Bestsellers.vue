@@ -89,7 +89,7 @@ export default {
 .text {
   display: block;
   padding: 0.8rem;
-  margin-left: 1rem;
+  margin-left: 0.6rem;
   position: relative;
   font-weight: 800;
   font-size: 2.1rem;

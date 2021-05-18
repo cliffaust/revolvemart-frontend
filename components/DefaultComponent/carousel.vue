@@ -130,7 +130,7 @@ export default {
   .text {
     font-size: 2.4rem;
     margin-bottom: 0.6rem;
-    font-family: $secondary-font-3;
+    font-family: $secondary-font-2;
     font-weight: 700;
   }
 

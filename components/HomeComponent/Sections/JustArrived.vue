@@ -1,61 +1,61 @@
 <template>
   <div>
-    <div class="text">Check These Out</div>
+    <div class="text">Just Arrived</div>
     <client-only>
       <div v-swiper="swiperOption" class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book1.jpg')"
-              :price="25.99"
-              :new-price="22.99"
-              book-title="The Programming Coventions"
-              author="J.J Lorem"
-              :discount-percent="20"
+              :image-path="require('~/assets/logo/book9.jpg')"
+              :price="18.99"
+              :new-price="14.99"
+              book-title="Flora and Ulysses"
+              author="Caroline James"
+              :discount-percent="13"
             ></Item>
           </div>
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book8.jpg')"
-              :price="19.99"
-              book-title="My Dark Vanessa"
-              author="Kate Elizabeth"
+              :image-path="require('~/assets/logo/book5.jpg')"
+              :price="54"
+              book-title="Machine Learning with python"
+              author="Jerry Lore"
             ></Item>
           </div>
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book6.jpg')"
+              :image-path="require('~/assets/logo/book2.jpg')"
               :price="41.99"
               :new-price="38.49"
-              book-title="Deacon King Kong"
-              author="James McBride"
-              :discount-percent="10"
+              book-title="The Clean Coder"
+              author="Robert Martin"
+              :discount-percent="12"
             ></Item>
           </div>
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book4.jpg')"
-              :price="52"
-              :new-price="42"
-              book-title="Hands-On Machine Learning with Scikit-Learn and Keras"
-              author="Aureilien Gideon"
+              :image-path="require('~/assets/logo/book10.jpg')"
+              :price="31"
+              :new-price="28"
+              book-title="Everybody belongs to everyone else"
+              author="Garry PArker"
               :discount-percent="15"
             ></Item>
           </div>
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book7.jpg')"
+              :image-path="require('~/assets/logo/book11.jpg')"
               :price="29"
-              book-title="Hamnet"
-              author="Kate Maggie"
+              book-title="Salman Rushdie"
+              author="Kingston Gabin"
             ></Item>
           </div>
           <div class="swiper-slide">
             <Item
-              :image-path="require('~/assets/logo/book3.jpg')"
+              :image-path="require('~/assets/logo/book12.jpg')"
               :price="67.32"
               :new-price="50"
-              book-title="Algorithms"
+              book-title="Ralph Ellison"
               author="Jake Peter"
               :discount-percent="19"
             ></Item>
