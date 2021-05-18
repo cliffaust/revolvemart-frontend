@@ -7,7 +7,9 @@
     <AboutCarousel></AboutCarousel>
     <Under20></Under20>
     <JustArrived></JustArrived>
+    <SpecialPicks></SpecialPicks>
     <BookCategory></BookCategory>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -20,6 +22,8 @@ import AboutCarousel from '~/components/HomeComponent/AboutCarousel'
 import Under20 from '~/components/HomeComponent/Sections/Under20'
 import JustArrived from '~/components/HomeComponent/Sections/JustArrived'
 import BookCategory from '~/components/HomeComponent/Sections/BookCategory'
+import SpecialPicks from '~/components/HomeComponent/Sections/SpecialPicks'
+import Footer from '~/components/HomeComponent/Footer'
 export default {
   components: {
     Header,
@@ -30,6 +34,8 @@ export default {
     Under20,
     JustArrived,
     BookCategory,
+    SpecialPicks,
+    Footer,
   },
 }
 </script>

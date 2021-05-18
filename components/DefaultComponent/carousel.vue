@@ -90,7 +90,6 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(252, 162, 17, 0.473);
     background: rgba(0, 35, 51, 0.63);
     z-index: 1;
   }

@@ -85,6 +85,7 @@ export default {}
   position: relative;
   font-weight: 800;
   font-size: 2.1rem;
+  margin-top: 1.5rem;
 
   &::after {
     content: '';
