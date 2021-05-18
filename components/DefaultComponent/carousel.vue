@@ -97,7 +97,7 @@ export default {
 
 .header-text {
   margin-bottom: 0.5rem;
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
   margin-left: 0.5rem;
   font-family: $secondary-font-2;

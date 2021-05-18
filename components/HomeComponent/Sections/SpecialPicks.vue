@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header-text">Special Pick</div>
+    <div class="header-text">Weekly Special Pick</div>
     <div class="container">
       <img
         class="image"
