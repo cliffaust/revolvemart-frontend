@@ -4,70 +4,42 @@
 
     <ul class="category-list">
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Action & Adventure
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Action &
+        Adventure
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'chevron-right']" class="icon" />Drama
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Drama
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Horror
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Horror
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Religious
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Religious
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Educational
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Educational
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Cooking
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Cooking
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />History
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />History
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'chevron-right']" class="icon" />Crime
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Crime
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Science
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Science
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Sci-fi
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Sci-fi
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Romance
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Romance
       </li>
       <li class="category-item">
-        <font-awesome-icon
-          :icon="['fas', 'chevron-right']"
-          class="icon"
-        />Finance & Business
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Finance &
+        Business
       </li>
     </ul>
   </div>
