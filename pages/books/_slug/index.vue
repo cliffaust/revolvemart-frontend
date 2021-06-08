@@ -58,6 +58,13 @@
         {{ bookDetail.description }}
       </div>
     </div>
+
+    <div class="reviews mt-2 ml-1 mr-1">
+      <div class="text-large text-bold">Reviews</div>
+      <!-- <div class="text mt-1 ml-xs text-medium">
+        {{ bookDetail.description }}
+      </div> -->
+    </div>
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
