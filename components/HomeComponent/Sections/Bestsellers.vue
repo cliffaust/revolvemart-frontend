@@ -1,68 +1,26 @@
 <template>
   <div>
     <div class="text">This Week's Bestsellers</div>
-    <client-only>
-      <div v-swiper="swiperOption" class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book9.jpg')"
-              :price="18.99"
-              :new-price="14.99"
-              book-title="Flora and Ulysses"
-              author="Caroline James"
-              :discount-percent="13"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book5.jpg')"
-              :price="54"
-              book-title="Machine Learning with python"
-              author="Jerry Lore"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book2.jpg')"
-              :price="41.99"
-              :new-price="38.49"
-              book-title="The Clean Coder"
-              author="Robert Martin"
-              :discount-percent="12"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book10.jpg')"
-              :price="31"
-              :new-price="28"
-              book-title="Everybody belongs to everyone else"
-              author="Garry PArker"
-              :discount-percent="15"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book11.jpg')"
-              :price="29"
-              book-title="Salman Rushdie"
-              author="Kingston Gabin"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book12.jpg')"
-              :price="67.32"
-              :new-price="50"
-              book-title="Ralph Ellison"
-              author="Jake Peter"
-              :discount-percent="19"
-            ></Item>
-          </div>
-        </div>
+    <div v-swiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <nuxt-link
+          v-for="bestSeller in bestSellers"
+          :key="bestSeller.id"
+          :to="{ path: `/books/${bestSeller.slug}` }"
+          class="swiper-slide"
+          append
+        >
+          <Item
+            :image-path="bestSeller.cover_image"
+            :price="bestSeller.price"
+            :new-price="bestSeller.discount_price"
+            :book-title="bestSeller.title"
+            :author="bestSeller.author"
+            :discount-percent="Math.floor(bestSeller.discount_percentage)"
+          ></Item>
+        </nuxt-link>
       </div>
-    </client-only>
+    </div>
   </div>
 </template>
 
@@ -71,6 +29,12 @@ import Item from '~/components/DefaultComponent/item'
 export default {
   components: {
     Item,
+  },
+  props: {
+    bestSellers: {
+      type: [Array, Object],
+      required: true,
+    },
   },
   data() {
     return {
@@ -89,7 +53,7 @@ export default {
 .text {
   display: block;
   padding: 0.8rem;
-  margin-left: 0.6rem;
+  margin-left: 1rem;
   position: relative;
   font-weight: 800;
   font-size: 2.1rem;
@@ -109,6 +73,9 @@ export default {
 .swiper-slide {
   width: 150px;
   height: 255px;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .swiper-wrapper {

@@ -1,72 +1,25 @@
 <template>
   <div>
     <div class="text">Check These Out</div>
-    <client-only>
-      <div v-swiper="swiperOption" class="swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book1.jpg')"
-              :price="25.99"
-              :new-price="22.99"
-              book-title="The Programming Coventions"
-              author="J.J Lorem"
-              :discount-percent="20"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book8.jpg')"
-              :price="19.99"
-              book-title="My Dark Vanessa"
-              author="Kate Elizabeth"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book6.jpg')"
-              :price="41.99"
-              :new-price="38.49"
-              book-title="Deacon King Kong"
-              author="James McBride"
-              :discount-percent="10"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book4.jpg')"
-              :price="52"
-              :new-price="42"
-              book-title="Hands-On Machine Learning with Scikit-Learn and Keras"
-              author="Aureilien Gideon"
-              :discount-percent="15"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book7.jpg')"
-              :price="29"
-              book-title="Hamnet"
-              author="Kate Maggie"
-            ></Item>
-          </div>
-          <div class="swiper-slide">
-            <Item
-              :image-path="require('~/assets/logo/book3.jpg')"
-              :price="67.32"
-              :new-price="50"
-              book-title="Algorithms"
-              author="Jake Peter"
-              :discount-percent="19"
-            ></Item>
-          </div>
+    <div v-swiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div v-for="book in books" :key="book.id" class="swiper-slide">
+          <Item
+            :image-path="book.cover_image"
+            :price="book.price"
+            :new-price="book.discount_price"
+            :book-title="book.title"
+            :author="book.author"
+            :discount-percent="Math.floor(book.discount_percentage)"
+          ></Item>
         </div>
       </div>
-    </client-only>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import Item from '~/components/DefaultComponent/item'
 export default {
   components: {
@@ -82,6 +35,8 @@ export default {
       },
     }
   },
+
+  computed: mapState({ books: (state) => state.Books.getBooks.books }),
 }
 </script>
 

@@ -21,7 +21,7 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['~/assets/scss/variables.scss'],
+  css: ['~/assets/scss/variables.scss', '~/assets/scss/utilities.scss'],
 
   styleResources: {
     scss: ['./assets/scss/*.scss'],
@@ -34,7 +34,6 @@ export default {
     },
     {
       src: '~/plugins/swiper.js',
-      mode: 'client',
     },
   ],
 
@@ -59,4 +58,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  env: {
+    baseUrl:
+      process.env.BASE_URL ||
+      'https://revolvemart-backend.herokuapp.com/api/v1',
+  },
 }

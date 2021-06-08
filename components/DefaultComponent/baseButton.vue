@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <button :class="buttonClass" class="noSelect" v-on="$listeners">
-      <slot></slot>
-    </button>
-  </div>
+  <button :class="buttonClass" class="noSelect" v-on="$listeners">
+    <slot></slot>
+  </button>
 </template>
 
 <script>
@@ -36,7 +34,7 @@ export default {
 }
 
 .btn-open {
-  padding: 0.8rem;
+  padding: 1.2rem 1rem;
   border-radius: 1rem;
   background-color: transparent;
   border: 2px solid $primary-bgcolor-2;
@@ -44,7 +42,7 @@ export default {
   text-transform: uppercase;
   transition: 0.5s ease;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 1.4rem;
   cursor: pointer;
   width: 100%;
 

@@ -1,57 +1,23 @@
 <template>
   <div>
-    <div class="header-text">
-      Dive Into
-      <div class="revolvemart-text-logo">RevolveMart</div>
-    </div>
     <client-only>
       <div v-swiper="swiperOption" class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <img
-              class="image"
-              src="~/assets/logo/modal/image1-small.jpg"
-              alt="Image Carousel"
-            />
-            <div class="header">
-              <div class="text">Quality Control</div>
+          <div
+            v-for="(image, index) in elements.imagePath"
+            :key="index"
+            :class="['swiper-slide', { 'swiper-style': elements.backdrop }]"
+          >
+            <img class="image" :src="image" alt="Image Carousel" />
+            <div v-if="elements.texts" class="header">
+              <div class="text">{{ elements.texts[index].header }}</div>
               <div class="sub-text">
-                Every book on our shelves undergoes quality control
-              </div>
-              <a href="#" class="link">Learn More</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img
-              class="image"
-              src="~/assets/logo/modal/image2-small.jpg"
-              alt="Image Carousel"
-            />
-            <div class="header">
-              <div class="text">Readers First</div>
-              <div class="sub-text">
-                We make sure the exprience of our readers are the finest
-              </div>
-              <a href="#" class="link">Learn More</a>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <img
-              class="image"
-              src="~/assets/logo/modal/image3-small.jpg"
-              alt="Image Carousel"
-            />
-            <div class="header">
-              <div class="text">Quality Education</div>
-              <div class="sub-text">
-                Our affordable books provides the opportunity to people that
-                can't afford to buy the best books
+                {{ elements.texts[index].subText }}
               </div>
               <a href="#" class="link">Learn More</a>
             </div>
           </div>
         </div>
-        <!-- Add Pagination -->
         <div slot="pagination" class="swiper-pagination"></div>
       </div>
     </client-only>
@@ -60,10 +26,16 @@
 
 <script>
 export default {
+  props: {
+    elements: {
+      type: [Object, Array],
+      required: true,
+    },
+  },
   data() {
     return {
       swiperOption: {
-        loop: true,
+        loop: this.elements.loop,
         pagination: {
           el: '.swiper-pagination',
           dynamicBullets: true,
@@ -75,8 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.swiper-slide {
-  margin-top: 1rem;
+.swiper-style {
   position: relative;
   height: 100%;
   display: flex;
@@ -95,25 +66,10 @@ export default {
   }
 }
 
-.header-text {
-  margin-bottom: 0.5rem;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-left: 0.5rem;
-  font-family: $secondary-font-2;
-
-  .revolvemart-text-logo {
-    display: inline-block;
-    position: relative;
-    font-weight: 800;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 3px;
+.swiper-pagination {
+  /deep/ &-bullet {
+    opacity: 1;
+    &-active {
       background-color: $primary-bgcolor-2;
     }
   }
@@ -184,7 +140,7 @@ export default {
 .swiper-container {
   overflow: hidden;
   height: 325px;
-  margin-bottom: 2rem;
+  // margin-bottom: 2rem;
 }
 
 .image {
