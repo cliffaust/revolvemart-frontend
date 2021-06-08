@@ -59,8 +59,46 @@
       </div>
     </div>
 
-    <div class="reviews mt-2 ml-1 mr-1">
+    <div class="reviews mt-2 ml-1 mr-1 mb-2">
       <div class="text-large text-bold">Reviews</div>
+      <div class="mt-1 rating">
+        <div class="value text-xl text-bold">4.5</div>
+        <div class="star">
+          <StarRating :rating="2.5" :font-size="20"></StarRating>
+          <div class="total-reviews text-medium text-bold">2031 Reviews</div>
+        </div>
+      </div>
+
+      <div class="review-percentages mt-1">
+        <div class="star-number">
+          <div class="star text-medium text-bold">5</div>
+          <div class="bar"><PercentageBar :percent="62"></PercentageBar></div>
+          <div class="percent text-medium text-bold">62%</div>
+        </div>
+        <div class="star-number">
+          <div class="star text-medium text-bold">4</div>
+          <div class="bar"><PercentageBar :percent="18"></PercentageBar></div>
+          <div class="percent text-medium text-bold">18%</div>
+        </div>
+        <div class="star-number">
+          <div class="star text-medium text-bold">3</div>
+          <div class="bar"><PercentageBar :percent="7"></PercentageBar></div>
+          <div class="percent text-medium text-bold">7%</div>
+        </div>
+        <div class="star-number">
+          <div class="star text-medium text-bold">2</div>
+          <div class="bar"><PercentageBar :percent="8"></PercentageBar></div>
+          <div class="percent text-medium text-bold">8%</div>
+        </div>
+        <div class="star-number">
+          <div class="star text-medium text-bold">1</div>
+          <div class="bar"><PercentageBar :percent="5"></PercentageBar></div>
+          <div class="percent text-medium text-bold">5%</div>
+        </div>
+      </div>
+      <div class="user-reviews mt-2">
+        <UserReview></UserReview>
+      </div>
       <!-- <div class="text mt-1 ml-xs text-medium">
         {{ bookDetail.description }}
       </div> -->
@@ -77,19 +115,29 @@ import Carousel from '~/components/DefaultComponent/carousel'
 import NavBar from '~/components/DefaultComponent/navbar'
 import Button from '~/components/DefaultComponent/baseButton'
 import Message from '~/components/DefaultComponent/message'
+import StarRating from '~/components/DefaultComponent/star-rating'
+import PercentageBar from '~/components/DefaultComponent/percentage-bar'
+import UserReview from '~/components/DefaultComponent/user-review'
 export default {
   components: {
     Carousel,
     NavBar,
     Button,
     Message,
+    StarRating,
+    PercentageBar,
+    UserReview,
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
       `${process.env.baseUrl}/books/${params.slug}/`
     )
+    const reviews = await axios.get(
+      `${process.env.baseUrl}/books/${params.slug}/reviews/`
+    )
     return {
       bookDetail: data,
+      reviews: reviews.data.results,
     }
   },
 
@@ -139,5 +187,30 @@ export default {
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+.star-number {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  .bar {
+    flex: 0 0 80%;
+  }
+}
+
+.rating {
+  display: flex;
+
+  .star {
+    display: flex;
+    margin-top: 8px;
+    margin-left: 6px;
+
+    .total-reviews {
+      margin-left: 2px;
+    }
+  }
 }
 </style>
