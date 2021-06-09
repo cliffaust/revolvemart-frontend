@@ -1,7 +1,9 @@
 <template>
   <div v-if="bookDetail.cover_image">
     <NavBar></NavBar>
-    <Carousel :elements="elements"></Carousel>
+    <div class="carousel-container">
+      <Carousel :elements="elements"></Carousel>
+    </div>
     <div
       v-if="bookDetail.stock === 0"
       class="stock-message text-medium text-bold text-red mt-1 ml-1"
@@ -81,6 +83,13 @@
             {{ starPercentage(rate) }}%
           </div>
         </div>
+      </div>
+      <div
+        v-if="filterReviews"
+        class="reset-filter text-medium mt-1 mb-1 ml-1"
+        @click="filterReviews = null"
+      >
+        Reset Filter
       </div>
       <div v-if="!spinner" class="user-reviews">
         <template v-if="filterReviews">
@@ -230,6 +239,10 @@ export default {
   width: 100%;
 }
 
+.carousel-container {
+  height: 325px;
+}
+
 .star-number {
   display: flex;
   align-items: center;
@@ -240,6 +253,11 @@ export default {
     flex: 0 0 80%;
     cursor: pointer;
   }
+}
+
+.reset-filter {
+  color: #0077b6;
+  cursor: pointer;
 }
 
 .rating {
