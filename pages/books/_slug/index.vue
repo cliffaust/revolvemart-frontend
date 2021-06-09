@@ -59,49 +59,55 @@
       </div>
     </div>
 
-    <div class="reviews mt-2 ml-1 mr-1 mb-2">
+    <div v-if="reviews.length > 0" class="reviews mt-2 ml-1 mr-1 mb-2">
       <div class="text-large text-bold">Reviews</div>
       <div class="mt-1 rating">
-        <div class="value text-xl text-bold">4.5</div>
+        <div class="value text-xl text-bold">{{ averageRating }}</div>
         <div class="star">
           <StarRating :rating="2.5" :font-size="20"></StarRating>
-          <div class="total-reviews text-medium text-bold">2031 Reviews</div>
+          <div class="total-reviews text-medium text-bold">
+            {{ reviews.length }} Reviews
+          </div>
         </div>
       </div>
 
       <div class="review-percentages mt-1">
-        <div class="star-number">
-          <div class="star text-medium text-bold">5</div>
-          <div class="bar"><PercentageBar :percent="62"></PercentageBar></div>
-          <div class="percent text-medium text-bold">62%</div>
-        </div>
-        <div class="star-number">
-          <div class="star text-medium text-bold">4</div>
-          <div class="bar"><PercentageBar :percent="18"></PercentageBar></div>
-          <div class="percent text-medium text-bold">18%</div>
-        </div>
-        <div class="star-number">
-          <div class="star text-medium text-bold">3</div>
-          <div class="bar"><PercentageBar :percent="7"></PercentageBar></div>
-          <div class="percent text-medium text-bold">7%</div>
-        </div>
-        <div class="star-number">
-          <div class="star text-medium text-bold">2</div>
-          <div class="bar"><PercentageBar :percent="8"></PercentageBar></div>
-          <div class="percent text-medium text-bold">8%</div>
-        </div>
-        <div class="star-number">
-          <div class="star text-medium text-bold">1</div>
-          <div class="bar"><PercentageBar :percent="5"></PercentageBar></div>
-          <div class="percent text-medium text-bold">5%</div>
+        <div v-for="(rate, index) in rates" :key="index" class="star-number">
+          <div class="star text-medium text-bold">{{ rate }}</div>
+          <div class="bar" @click="filterReview(rate)">
+            <PercentageBar :percent="starPercentage(rate)"></PercentageBar>
+          </div>
+          <div class="percent text-medium text-bold">
+            {{ starPercentage(rate) }}%
+          </div>
         </div>
       </div>
-      <div class="user-reviews mt-2">
-        <UserReview></UserReview>
+      <div v-if="!spinner" class="user-reviews">
+        <template v-if="filterReviews">
+          <div
+            v-for="review in filterReviews"
+            :key="review.id"
+            class="user-review mt-2"
+          >
+            <UserReview :review="review"></UserReview>
+          </div>
+        </template>
+        <template v-else>
+          <div
+            v-for="review in reviews"
+            :key="review.id"
+            class="user-review mt-2"
+          >
+            <UserReview :review="review"></UserReview>
+          </div>
+        </template>
       </div>
       <!-- <div class="text mt-1 ml-xs text-medium">
         {{ bookDetail.description }}
       </div> -->
+    </div>
+    <div v-if="spinner" class="spinner">
+      <LoadingSpinner></LoadingSpinner>
     </div>
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
@@ -118,6 +124,7 @@ import Message from '~/components/DefaultComponent/message'
 import StarRating from '~/components/DefaultComponent/star-rating'
 import PercentageBar from '~/components/DefaultComponent/percentage-bar'
 import UserReview from '~/components/DefaultComponent/user-review'
+import LoadingSpinner from '~/components/DefaultComponent/loading-spinner'
 export default {
   components: {
     Carousel,
@@ -127,6 +134,7 @@ export default {
     StarRating,
     PercentageBar,
     UserReview,
+    LoadingSpinner,
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
@@ -148,6 +156,9 @@ export default {
         loop: false,
       },
       showMessageBox: false,
+      filterReviews: null,
+      rates: [5, 4, 3, 2, 1],
+      spinner: false,
     }
   },
 
@@ -157,6 +168,13 @@ export default {
         (element, index) => element.image
       )
       return images
+    },
+    averageRating() {
+      let totalRating = 0
+      this.reviews.forEach((review) => {
+        totalRating += review.rate
+      })
+      return totalRating / this.reviews.length
     },
   },
 
@@ -170,6 +188,29 @@ export default {
         this.bookDetail.cover_image,
         ...this.bookComputedImages,
       ]
+    },
+
+    async filterReview(rate) {
+      this.spinner = true
+      const { data } = await axios.get(
+        `${process.env.baseUrl}/books/${this.$route.params.slug}/reviews/?rate=${rate}`
+      )
+      this.filterReviews = data.results
+      this.spinner = false
+    },
+
+    starPercentage(star) {
+      let numberOfReviewers = 0
+      this.reviews.forEach((review) => {
+        if (review.rate === star) {
+          numberOfReviewers++
+        }
+      })
+      return Math.floor(
+        100 -
+          ((this.reviews.length - numberOfReviewers) / this.reviews.length) *
+            100
+      )
     },
 
     changeShowMessageBox() {
@@ -197,6 +238,7 @@ export default {
 
   .bar {
     flex: 0 0 80%;
+    cursor: pointer;
   }
 }
 
