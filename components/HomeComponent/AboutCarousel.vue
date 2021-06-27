@@ -51,9 +51,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// .carousel {
-//   height: 256px;
-// }
+.carousel {
+  height: 256px;
+}
 
 .header-text {
   margin-bottom: 1.5rem;

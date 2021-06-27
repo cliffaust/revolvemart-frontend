@@ -150,7 +150,7 @@ export default {
 }
 
 .image {
-  width: 100%;
+  width: 350px;
   height: 100%;
   object-fit: cover;
 }
