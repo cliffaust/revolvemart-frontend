@@ -4,9 +4,7 @@
       Dive Into
       <div class="revolvemart-text-logo">RevolveMart</div>
     </div>
-    <div class="carousel">
-      <Carousel :elements="elements"></Carousel>
-    </div>
+    <Carousel :elements="elements"></Carousel>
   </div>
 </template>
 
@@ -51,9 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carousel {
-  height: 256px;
-}
+// .carousel {
+//   height: 256px;
+// }
 
 .header-text {
   margin-bottom: 1.5rem;
