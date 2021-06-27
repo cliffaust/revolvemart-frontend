@@ -1,27 +1,27 @@
 <template>
-  <div>
-    <client-only>
-      <div v-swiper="swiperOption" class="swiper-container">
-        <div class="swiper-wrapper">
-          <div
-            v-for="(image, index) in elements.imagePath"
-            :key="index"
-            :class="['swiper-slide', { 'swiper-style': elements.backdrop }]"
-          >
+  <client-only>
+    <div v-swiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div
+          v-for="(image, index) in elements.imagePath"
+          :key="index"
+          :class="['swiper-slide', { 'swiper-style': elements.backdrop }]"
+        >
+          <div class="img-box">
             <img class="image" :src="image" alt="Image Carousel" />
-            <div v-if="elements.texts" class="header">
-              <div class="text">{{ elements.texts[index].header }}</div>
-              <div class="sub-text">
-                {{ elements.texts[index].subText }}
-              </div>
-              <a href="#" class="link">Learn More</a>
+          </div>
+          <div v-if="elements.texts" class="header">
+            <div class="text">{{ elements.texts[index].header }}</div>
+            <div class="sub-text">
+              {{ elements.texts[index].subText }}
             </div>
+            <a href="#" class="link">Learn More</a>
           </div>
         </div>
-        <div slot="pagination" class="swiper-pagination"></div>
       </div>
-    </client-only>
-  </div>
+      <div slot="pagination" class="swiper-pagination"></div>
+    </div>
+  </client-only>
 </template>
 
 <script>
@@ -132,19 +132,25 @@ export default {
   }
 }
 
+.img-box {
+  text-align: center;
+  height: 100%;
+}
+
 .swiper-wrapper {
-  align-items: stretch;
   display: flex;
 }
 
 .swiper-container {
   overflow: hidden;
-  height: 325px;
+  height: 100%;
+  // display: flex;
+  // align-items: center;
   // margin-bottom: 2rem;
 }
 
 .image {
-  width: 100%;
+  width: 350px;
   height: 100%;
   object-fit: cover;
 }

@@ -88,9 +88,9 @@ export default {
   // -webkit-box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.45);
   // -moz-box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.45);
   // box-shadow: 0px 0px 20px -4px rgba(0, 0, 0, 0.45);
-  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.2);
-  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
   &:not(:first-child) {
     margin-left: 1.5rem;
   }
@@ -137,8 +137,8 @@ export default {
 }
 
 .image-box {
-  height: 150px;
-  width: 140px;
+  height: 160px;
+  width: 100%;
   overflow: hidden;
   margin-bottom: 0.8rem;
 }

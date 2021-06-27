@@ -121,6 +121,7 @@
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
+    <img class="test-image" src="~/assets/logo/book42.jpg" alt="Book" />
   </div>
 </template>
 
@@ -240,7 +241,7 @@ export default {
 }
 
 .carousel-container {
-  height: 325px;
+  height: 370px;
 }
 
 .star-number {
@@ -258,6 +259,10 @@ export default {
 .reset-filter {
   color: #0077b6;
   cursor: pointer;
+}
+
+.test-image {
+  width: 100%;
 }
 
 .rating {
