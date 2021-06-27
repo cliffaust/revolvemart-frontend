@@ -94,7 +94,7 @@ export default {
 // }
 
 .container {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   padding: 0 6px;
 }
 

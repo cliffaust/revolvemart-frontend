@@ -5,7 +5,11 @@
     </div>
 
     <div class="items">
-      <div v-for="student in students" :key="student.id" class="item">
+      <div
+        v-for="student in students.slice(0, 4)"
+        :key="student.id"
+        class="item"
+      >
         <Item
           :image-path="student.cover_image"
           :price="student.price"
@@ -96,7 +100,7 @@ export default {
 // }
 
 .container {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   padding: 0 6px;
 }
 
