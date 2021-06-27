@@ -3,20 +3,6 @@
     <div class="text-btn-box">
       <span class="text">Check These Out</span><button class="btn">More</button>
     </div>
-    <!-- <div v-swiper="swiperOption" class="swiper-container">
-      <div class="swiper-wrapper">
-        <div v-for="book in books" :key="book.id" class="swiper-slide">
-          <Item
-            :image-path="book.cover_image"
-            :price="book.price"
-            :new-price="book.discount_price"
-            :book-title="book.title"
-            :author="book.author"
-            :discount-percent="Math.floor(book.discount_percentage)"
-          ></Item>
-        </div>
-      </div>
-    </div> -->
     <div class="items">
       <div v-for="book in books" :key="book.id" class="item">
         <Item
@@ -62,13 +48,14 @@ export default {
   justify-content: space-between;
   align-items: center;
   .btn {
-    padding: 0.5rem 1.2rem;
+    padding: 0.7rem 1.2rem;
     background-color: #e63947d3;
     background-color: #002333;
     width: 65px;
     border-radius: 0.5rem;
     text-transform: uppercase;
     font-size: 1.2rem;
+    margin-right: 1rem;
     color: inherit;
     color: #fff;
     font-family: inherit;
