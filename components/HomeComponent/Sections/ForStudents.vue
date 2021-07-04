@@ -111,8 +111,8 @@ export default {
 
   .item {
     flex: 0 0 48%;
-    margin-bottom: 1rem;
-    height: 265px;
+    margin-bottom: 2rem;
+    height: 275px;
     cursor: pointer;
     text-decoration: none;
     color: inherit;

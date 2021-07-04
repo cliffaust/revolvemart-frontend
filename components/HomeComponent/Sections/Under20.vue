@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="text">Just under GH¢20</div>
+  <div class="container">
+    <!-- <div class="text">Just under GH¢20</div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
         <div v-for="less in under20" :key="less.id" class="swiper-slide">
@@ -13,6 +13,22 @@
             :discount-percent="Math.floor(less.discount_percentage)"
           ></Item>
         </div>
+      </div>
+    </div> -->
+    <div class="text-btn-box">
+      <span class="text">Just under GH¢20</span
+      ><button class="btn">More</button>
+    </div>
+    <div class="items">
+      <div v-for="less in under20.slice(0, 4)" :key="less.id" class="item">
+        <Item
+          :image-path="less.cover_image"
+          :price="less.price"
+          :new-price="less.discount_price"
+          :book-title="less.title"
+          :author="less.author"
+          :discount-percent="Math.floor(less.discount_percentage)"
+        ></Item>
       </div>
     </div>
   </div>
@@ -44,37 +60,74 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.text {
-  display: block;
-  padding: 0.8rem;
-  margin-left: 0.6rem;
-  position: relative;
-  font-weight: 800;
-  font-size: 2.1rem;
+.text-btn-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .btn {
+    padding: 0.7rem 1.2rem;
+    background-color: #e63947d3;
+    background-color: #002333;
+    width: 65px;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: inherit;
+    color: #fff;
+    font-family: inherit;
+    font-weight: bold;
+    margin-right: 1rem;
+    cursor: pointer;
+    border: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 50px;
-    height: 3px;
-    margin-left: 1rem;
-    background-color: $primary-bgcolor-2;
+    &:focus {
+      outline: none;
+    }
+  }
+  .text {
+    display: block;
+    padding: 0.8rem;
+    margin-left: 0.6rem;
+    position: relative;
+    font-weight: 800;
+    font-size: 2.1rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      margin-left: 1rem;
+      background-color: $primary-bgcolor-2;
+    }
   }
 }
 
-.swiper-slide {
-  width: 150px;
-  height: 255px;
+// .swiper-slide {
+//   width: 150px;
+//   height: 255px;
+// }
+
+.container {
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  padding: 0 6px;
 }
 
-.swiper-wrapper {
-  align-items: stretch;
+.items {
   display: flex;
-}
+  justify-content: space-between;
+  flex-wrap: wrap;
 
-.swiper-container {
-  height: 300px;
+  .item {
+    flex: 0 0 48%;
+    margin-bottom: 2rem;
+    height: 265px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+  }
 }
 </style>

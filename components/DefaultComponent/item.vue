@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="item-container">
     <div class="image-box">
       <img class="item-image" :src="imagePath" alt="Book Image" />
     </div>
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
+.item-container {
   // margin-left: 0.5rem;
   margin-top: 1.5em;
   width: 100%;
@@ -128,6 +128,11 @@ export default {
   font-size: 1.2rem;
   font-weight: bold;
   margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .item-image {
