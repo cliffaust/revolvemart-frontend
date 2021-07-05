@@ -121,7 +121,6 @@
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
-    <img class="test-image" src="~/assets/logo/book42.jpg" alt="Book" />
   </div>
 </template>
 
