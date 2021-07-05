@@ -3,16 +3,22 @@
     <div class="text-btn-box">
       <span class="text">Check These Out</span><button class="btn">More</button>
     </div>
-    <div class="items">
-      <div v-for="book in books" :key="book.id" class="item">
-        <Item
-          :image-path="book.cover_image"
-          :price="book.price"
-          :new-price="book.discount_price"
-          :book-title="book.title"
-          :author="book.author"
-          :discount-percent="Math.floor(book.discount_percentage)"
-        ></Item>
+    <div v-swiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div
+          v-for="book in books.slice(0, 7)"
+          :key="book.id"
+          class="swiper-slide"
+        >
+          <Item
+            :image-path="book.cover_image"
+            :price="book.price"
+            :new-price="book.discount_price"
+            :book-title="book.title"
+            :author="book.author"
+            :discount-percent="Math.floor(book.discount_percentage)"
+          ></Item>
+        </div>
       </div>
     </div>
   </div>
@@ -55,10 +61,10 @@ export default {
     border-radius: 0.5rem;
     text-transform: uppercase;
     font-size: 1.2rem;
-    margin-right: 1rem;
     color: inherit;
     color: #fff;
     font-family: inherit;
+    margin-right: 1rem;
     font-weight: bold;
     cursor: pointer;
     border: none;
@@ -88,26 +94,9 @@ export default {
   }
 }
 
-// .swiper-slide {
-//   width: 150px;
-//   height: 255px;
-// }
-
-.container {
-  margin-bottom: 3rem;
-  padding: 0 6px;
-}
-
-.items {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-
-  .item {
-    flex: 0 0 48%;
-    margin-bottom: 1rem;
-    height: 265px;
-  }
+.swiper-slide {
+  width: 170px;
+  height: 265px;
 }
 
 .swiper-wrapper {

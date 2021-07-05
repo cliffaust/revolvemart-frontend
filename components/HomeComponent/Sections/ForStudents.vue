@@ -4,20 +4,22 @@
       <span class="text">For Students</span><button class="btn">More</button>
     </div>
 
-    <div class="items">
-      <div
-        v-for="student in students.slice(0, 4)"
-        :key="student.id"
-        class="item"
-      >
-        <Item
-          :image-path="student.cover_image"
-          :price="student.price"
-          :new-price="student.discount_price"
-          :book-title="student.title"
-          :author="student.author"
-          :discount-percent="Math.floor(student.discount_percentage)"
-        ></Item>
+    <div v-swiper="swiperOption" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div
+          v-for="student in students.slice(0, 7)"
+          :key="student.id"
+          class="swiper-slide"
+        >
+          <Item
+            :image-path="student.cover_image"
+            :price="student.price"
+            :new-price="student.discount_price"
+            :book-title="student.title"
+            :author="student.author"
+            :discount-percent="Math.floor(student.discount_percentage)"
+          ></Item>
+        </div>
       </div>
     </div>
   </div>
@@ -64,8 +66,8 @@ export default {
     color: inherit;
     color: #fff;
     font-family: inherit;
-    font-weight: bold;
     margin-right: 1rem;
+    font-weight: bold;
     cursor: pointer;
     border: none;
 
@@ -94,28 +96,17 @@ export default {
   }
 }
 
-// .swiper-slide {
-//   width: 150px;
-//   height: 255px;
-// }
-
-.container {
-  margin-bottom: 3rem;
-  padding: 0 6px;
+.swiper-slide {
+  width: 170px;
+  height: 265px;
 }
 
-.items {
+.swiper-wrapper {
+  align-items: stretch;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+}
 
-  .item {
-    flex: 0 0 48%;
-    margin-bottom: 2rem;
-    height: 275px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
+.swiper-container {
+  height: 300px;
 }
 </style>

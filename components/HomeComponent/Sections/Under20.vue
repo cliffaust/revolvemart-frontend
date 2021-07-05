@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <!-- <div class="text">Just under GH¢20</div>
+    <div class="text-btn-box">
+      <span class="text">Just under GH¢20</span
+      ><button class="btn">More</button>
+    </div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
         <div v-for="less in under20" :key="less.id" class="swiper-slide">
@@ -13,22 +16,6 @@
             :discount-percent="Math.floor(less.discount_percentage)"
           ></Item>
         </div>
-      </div>
-    </div> -->
-    <div class="text-btn-box">
-      <span class="text">Just under GH¢20</span
-      ><button class="btn">More</button>
-    </div>
-    <div class="items">
-      <div v-for="less in under20.slice(0, 4)" :key="less.id" class="item">
-        <Item
-          :image-path="less.cover_image"
-          :price="less.price"
-          :new-price="less.discount_price"
-          :book-title="less.title"
-          :author="less.author"
-          :discount-percent="Math.floor(less.discount_percentage)"
-        ></Item>
       </div>
     </div>
   </div>
@@ -75,8 +62,8 @@ export default {
     color: inherit;
     color: #fff;
     font-family: inherit;
-    font-weight: bold;
     margin-right: 1rem;
+    font-weight: bold;
     cursor: pointer;
     border: none;
 
@@ -105,29 +92,17 @@ export default {
   }
 }
 
-// .swiper-slide {
-//   width: 150px;
-//   height: 255px;
-// }
-
-.container {
-  margin-bottom: 3rem;
-  margin-top: 3rem;
-  padding: 0 6px;
+.swiper-slide {
+  width: 170px;
+  height: 265px;
 }
 
-.items {
+.swiper-wrapper {
+  align-items: stretch;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+}
 
-  .item {
-    flex: 0 0 48%;
-    margin-bottom: 2rem;
-    height: 265px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
+.swiper-container {
+  height: 300px;
 }
 </style>

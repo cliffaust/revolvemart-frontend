@@ -1,11 +1,10 @@
 <template>
   <div class="container">
-    <!-- <div class="text">This Week's Bestsellers</div> -->
     <div class="text-btn-box">
       <span class="text">This Week's Bestsellers</span
       ><button class="btn">More</button>
     </div>
-    <!-- <div v-swiper="swiperOption" class="swiper-container">
+    <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
         <nuxt-link
           v-for="bestSeller in bestSellers"
@@ -24,24 +23,6 @@
           ></Item>
         </nuxt-link>
       </div>
-    </div> -->
-    <div class="items">
-      <nuxt-link
-        v-for="bestSeller in bestSellers.slice(0, 4)"
-        :key="bestSeller.id"
-        :to="{ path: `/books/${bestSeller.slug}` }"
-        class="item"
-        append
-      >
-        <Item
-          :image-path="bestSeller.cover_image"
-          :price="bestSeller.price"
-          :new-price="bestSeller.discount_price"
-          :book-title="bestSeller.title"
-          :author="bestSeller.author"
-          :discount-percent="Math.floor(bestSeller.discount_percentage)"
-        ></Item>
-      </nuxt-link>
     </div>
   </div>
 </template>
@@ -117,28 +98,19 @@ export default {
   }
 }
 
-// .swiper-slide {
-//   width: 150px;
-//   height: 255px;
-// }
-
-.container {
-  margin-bottom: 3rem;
-  padding: 0 6px;
+.swiper-slide {
+  width: 170px;
+  height: 265px;
+  text-decoration: none;
+  color: inherit;
 }
 
-.items {
+.swiper-wrapper {
+  align-items: stretch;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+}
 
-  .item {
-    flex: 0 0 48%;
-    margin-bottom: 1rem;
-    height: 265px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
+.swiper-container {
+  height: 300px;
 }
 </style>

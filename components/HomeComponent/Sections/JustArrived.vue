@@ -1,9 +1,15 @@
 <template>
-  <div class="container">
-    <!-- <div class="text">Just Arrived</div>
+  <div>
+    <div class="text-btn-box">
+      <span class="text">Just Arrived</span><button class="btn">More</button>
+    </div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
-        <div v-for="arrive in arrived" :key="arrive.id" class="swiper-slide">
+        <div
+          v-for="arrive in arrived.slice(0, 7)"
+          :key="arrive.id"
+          class="swiper-slide"
+        >
           <Item
             :image-path="arrive.cover_image"
             :price="arrive.price"
@@ -13,21 +19,6 @@
             :discount-percent="Math.floor(arrive.discount_percentage)"
           ></Item>
         </div>
-      </div>
-    </div> -->
-    <div class="text-btn-box">
-      <span class="text">Just Arrived</span><button class="btn">More</button>
-    </div>
-    <div class="items">
-      <div v-for="arrive in arrived.slice(0, 4)" :key="arrive.id" class="item">
-        <Item
-          :image-path="arrive.cover_image"
-          :price="arrive.price"
-          :new-price="arrive.discount_price"
-          :book-title="arrive.title"
-          :author="arrive.author"
-          :discount-percent="Math.floor(arrive.discount_percentage)"
-        ></Item>
       </div>
     </div>
   </div>
@@ -74,8 +65,8 @@ export default {
     color: inherit;
     color: #fff;
     font-family: inherit;
-    font-weight: bold;
     margin-right: 1rem;
+    font-weight: bold;
     cursor: pointer;
     border: none;
 
@@ -104,29 +95,17 @@ export default {
   }
 }
 
-// .swiper-slide {
-//   width: 150px;
-//   height: 255px;
-// }
-
-.container {
-  margin-bottom: 4rem;
-  margin-top: 2rem;
-  padding: 0 6px;
+.swiper-slide {
+  width: 170px;
+  height: 265px;
 }
 
-.items {
+.swiper-wrapper {
+  align-items: stretch;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+}
 
-  .item {
-    flex: 0 0 48%;
-    margin-bottom: 2rem;
-    height: 265px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-  }
+.swiper-container {
+  height: 300px;
 }
 </style>
