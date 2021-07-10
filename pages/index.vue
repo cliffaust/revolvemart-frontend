@@ -43,7 +43,7 @@ export default {
   async asyncData() {
     const response1 = await axios.get(`${process.env.baseUrl}/books/?page=2`)
     const response2 = await axios.get(`${process.env.baseUrl}/books/?page=3`)
-    const response3 = await axios.get(`${process.env.baseUrl}/books/?page=4`)
+    const response3 = await axios.get(`${process.env.baseUrl}/books/?page=6`)
     const response4 = await axios.get(`${process.env.baseUrl}/books/?page=5`)
     return {
       arrived: response1.data.results,

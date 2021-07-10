@@ -35,6 +35,9 @@ export default {
     {
       src: '~/plugins/swiper.js',
     },
+    {
+      src: '~/plugins/animate.js',
+    },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

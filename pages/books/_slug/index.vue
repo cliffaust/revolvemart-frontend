@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bookDetail.cover_image">
+  <div v-if="bookDetail.cover_image" :class="{ modal: showModal }">
     <NavBar></NavBar>
     <div class="carousel-container">
       <Carousel :elements="elements"></Carousel>
@@ -103,7 +103,7 @@
         </template>
         <template v-else>
           <div
-            v-for="review in reviews"
+            v-for="review in reviews.slice(0, 4)"
             :key="review.id"
             class="user-review mt-2"
           >
@@ -117,6 +117,20 @@
     </div>
     <div v-if="spinner" class="spinner">
       <LoadingSpinner></LoadingSpinner>
+    </div>
+
+    <div v-if="showModal" class="all-reviews">
+      <AllReviews
+        :show-modal="showModal"
+        :reviews="reviews"
+        @close="close"
+      ></AllReviews>
+    </div>
+
+    <div v-if="!spinner" class="review-btn">
+      <Button button-class="backgroud-open-btn" @click="showModal = true"
+        >View All Reviews</Button
+      >
     </div>
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
@@ -133,6 +147,7 @@ import Message from '~/components/DefaultComponent/message'
 import StarRating from '~/components/DefaultComponent/star-rating'
 import PercentageBar from '~/components/DefaultComponent/percentage-bar'
 import UserReview from '~/components/DefaultComponent/user-review'
+import AllReviews from '~/components/DefaultComponent/all-reviews.vue'
 import LoadingSpinner from '~/components/DefaultComponent/loading-spinner'
 export default {
   components: {
@@ -144,6 +159,7 @@ export default {
     PercentageBar,
     UserReview,
     LoadingSpinner,
+    AllReviews,
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
@@ -168,6 +184,7 @@ export default {
       filterReviews: null,
       rates: [5, 4, 3, 2, 1],
       spinner: false,
+      showModal: false,
     }
   },
 
@@ -197,6 +214,10 @@ export default {
         this.bookDetail.cover_image,
         ...this.bookComputedImages,
       ]
+    },
+
+    close() {
+      this.showModal = false
     },
 
     async filterReview(rate) {
@@ -237,6 +258,17 @@ export default {
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+.modal {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+}
+
+.review-btn {
+  padding: 0 10px;
+  margin-bottom: 15px;
 }
 
 .carousel-container {

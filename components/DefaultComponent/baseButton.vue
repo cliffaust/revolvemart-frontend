@@ -81,6 +81,24 @@ export default {
   border-radius: 50px;
 }
 
+.backgroud-open-btn {
+  padding: 1.2rem 1rem;
+  border-radius: 1rem;
+  background-color: transparent;
+  border: 2px solid $primary-bgcolor-2;
+  color: $primary-text-color;
+  text-transform: uppercase;
+  transition: 0.5s ease;
+  font-weight: 600;
+  font-size: 1.4rem;
+  cursor: pointer;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}
+
 .btn-secondary {
   padding: 1.2rem 1rem;
   background-color: $primary-bgcolor-2;
