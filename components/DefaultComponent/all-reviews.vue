@@ -93,6 +93,8 @@ export default {
 }
 
 .backdrop-not-active {
+  position: fixed;
+  bottom: 0;
   z-index: 0;
   background-color: rgba(0, 0, 0, 0);
   transition: 0.3s ease;
