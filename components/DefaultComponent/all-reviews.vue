@@ -1,21 +1,14 @@
 <template>
-  <div class="backdrop" @click="close">
-    <transition enter-active-class="animate__bounceInUp">
-      <div v-if="showModal" :class="false" class="review-container" @click.stop>
-        <div
-          v-for="review in reviews"
-          :key="review.id"
-          class="user-review mt-2"
-        >
-          <UserReview :review="review"></UserReview>
-        </div>
-        <font-awesome-icon
-          :icon="['fas', 'times']"
-          class="icon"
-          @click="close"
-        />
+  <div :class="[showModal ? 'backdrop' : 'backdrop-not-active']" @click="close">
+    <div
+      :class="[showModal ? 'review-container' : 'review-container-not-active']"
+      @click.stop
+    >
+      <div v-for="review in reviews" :key="review.id" class="user-review mt-2">
+        <UserReview :review="review"></UserReview>
       </div>
-    </transition>
+      <font-awesome-icon :icon="['fas', 'times']" class="icon" @click="close" />
+    </div>
   </div>
 </template>
 
@@ -73,18 +66,53 @@ export default {
   background: #333;
 }
 
-.review-container {
+.review-container-not-active {
   position: fixed;
   bottom: 0;
-  top: 100px;
-  left: 0;
-  right: 0;
+  //   top: 100px;
+  //   left: 0;
+  //   right: 0;
+  height: 85%;
+  transform: translateY(100%);
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   z-index: 9;
   padding: 1.2rem 2rem;
   background-color: #fff;
   overflow-y: scroll;
+  transition: transform 0.3s linear;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    cursor: pointer;
+  }
+}
+
+.backdrop-not-active {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s ease;
+}
+
+.review-container {
+  position: fixed;
+  bottom: 0;
+  //   top: 100px;
+  //   left: 0;
+  //   right: 0;
+  height: 85%;
+  transform: translateY(0);
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  z-index: 9;
+  padding: 1.2rem 2rem;
+  background-color: #fff;
+  overflow-y: scroll;
+  transition: transform 0.3s linear;
 
   .icon {
     width: 24px;
@@ -104,5 +132,6 @@ export default {
   left: 0;
   z-index: 5;
   background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease;
 }
 </style>

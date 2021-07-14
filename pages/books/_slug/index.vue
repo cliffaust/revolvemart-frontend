@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bookDetail.cover_image" :class="{ modal: showModal }">
+  <div v-if="bookDetail.cover_image">
     <NavBar></NavBar>
     <div class="carousel-container">
       <Carousel :elements="elements"></Carousel>
@@ -119,7 +119,7 @@
       <LoadingSpinner></LoadingSpinner>
     </div>
 
-    <div v-if="showModal" class="all-reviews">
+    <div class="all-reviews">
       <AllReviews
         :show-modal="showModal"
         :reviews="reviews"
@@ -260,11 +260,11 @@ export default {
   width: 100%;
 }
 
-.modal {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-}
+// .modal {
+//   height: 100%;
+//   width: 100%;
+//   position: fixed;
+// }
 
 .review-btn {
   padding: 0 10px;
