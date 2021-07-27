@@ -94,7 +94,7 @@
       <div v-if="!spinner" class="user-reviews">
         <template v-if="filterReviews">
           <div
-            v-for="review in filterReviews"
+            v-for="review in filterReviews.slice(0, 4)"
             :key="review.id"
             class="user-review mt-2"
           >
@@ -122,19 +122,24 @@
     <div class="all-reviews">
       <AllReviews
         :show-modal="showModal"
-        :reviews="reviews"
+        :reviews="filterReviews ? filterReviews : reviews"
         @close="close"
       ></AllReviews>
     </div>
 
     <div v-if="!spinner" class="review-btn">
-      <Button button-class="backgroud-open-btn" @click="showModal = true"
+      <Button
+        v-if="reviews.length > 0"
+        button-class="backgroud-open-btn"
+        @click="showModal = true"
         >View All Reviews</Button
       >
     </div>
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
+    <SimilarItems :similar-items="arrived"></SimilarItems>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -148,7 +153,9 @@ import StarRating from '~/components/DefaultComponent/star-rating'
 import PercentageBar from '~/components/DefaultComponent/percentage-bar'
 import UserReview from '~/components/DefaultComponent/user-review'
 import AllReviews from '~/components/DefaultComponent/all-reviews.vue'
+import SimilarItems from '~/components/DefaultComponent/similarItems.vue'
 import LoadingSpinner from '~/components/DefaultComponent/loading-spinner'
+import Footer from '~/components/HomeComponent/Footer.vue'
 export default {
   components: {
     Carousel,
@@ -160,6 +167,8 @@ export default {
     UserReview,
     LoadingSpinner,
     AllReviews,
+    SimilarItems,
+    Footer,
   },
   async asyncData({ params }) {
     const { data } = await axios.get(
@@ -168,7 +177,9 @@ export default {
     const reviews = await axios.get(
       `${process.env.baseUrl}/books/${params.slug}/reviews/`
     )
+    const response = await axios.get(`${process.env.baseUrl}/books/?page=2`)
     return {
+      arrived: response.data.results,
       bookDetail: data,
       reviews: reviews.data.results,
     }
@@ -181,7 +192,7 @@ export default {
         loop: false,
       },
       showMessageBox: false,
-      filterReviews: null,
+      filterReviews: '',
       rates: [5, 4, 3, 2, 1],
       spinner: false,
       showModal: false,

@@ -15,6 +15,15 @@
     <div class="box-2 text-medium mt-1">
       {{ review.message }}
     </div>
+
+    <div class="hepful-vote mt-1">
+      <div class="text-small text-bold">Was this hepful?</div>
+
+      <div class="icons">
+        <font-awesome-icon :icon="['far', 'thumbs-up']" class="icon" />
+        <!-- <font-awesome-icon :icon="['fas', 'thumbs-down']" class="icon" /> -->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -48,6 +57,24 @@ export default {
         height: 54px;
         object-fit: cover;
         border-radius: 100%;
+      }
+    }
+  }
+
+  .hepful-vote {
+    display: flex;
+    align-items: center;
+
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .icon {
+        width: 18px;
+        height: 18px;
+        cursor: pointer;
+        margin-left: 1rem;
       }
     }
   }

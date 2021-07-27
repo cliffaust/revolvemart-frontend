@@ -53,19 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cecdcd;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #333;
-}
-
 .review-container-not-active {
   position: fixed;
   bottom: 0;
@@ -133,7 +120,7 @@ export default {
   bottom: 0;
   left: 0;
   z-index: 5;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.774);
   transition: 0.3s ease;
 }
 </style>
