@@ -12,8 +12,7 @@ export default {
     ],
     link: [
       {
-        href:
-          'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Mulish:wght@400;500;600;700&family=Old+Standard+TT:wght@400;700&family=Open+Sans:wght@400;600&family=Spectral:ital@1&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500&family=Mulish:wght@400;500;600;700&family=Old+Standard+TT:wght@400;700&family=Open+Sans:wght@400;600&family=Spectral:ital@1&display=swap',
         rel: 'stylesheet',
       },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -38,6 +37,7 @@ export default {
     {
       src: '~/plugins/animate.js',
     },
+    '~/plugins/veeValidate.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

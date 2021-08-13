@@ -1,22 +1,27 @@
 <template>
   <div class="navbar">
     <burger></burger>
-    <img class="logo noSelect" src="~/assets/logo/Cart16x16.png" alt="Logo" />
+    <nuxt-link to="/">
+      <img class="logo noSelect" src="~/assets/logo/Cart16x16.png" alt="Logo" />
+    </nuxt-link>
     <div class="shopping-cart-icon-container noSelect">
       <font-awesome-icon
         :icon="['fas', 'shopping-cart']"
         class="shopping-cart-icon"
       />
-      <div class="number-in-cart">2</div>
+      <div class="number-in-cart">3</div>
     </div>
+    <NavbarSlider></NavbarSlider>
   </div>
 </template>
 
 <script>
 import burger from './burger'
+import NavbarSlider from '~/components/DefaultComponent/navbarSlider.vue'
 export default {
   components: {
     burger,
+    NavbarSlider,
   },
 }
 </script>

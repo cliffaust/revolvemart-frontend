@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <input id="nav-toggle" type="checkbox" class="navigation-checkbox" />
+  <div class="burger-box">
+    <input
+      id="nav-toggle"
+      v-model="navbarSlider"
+      type="checkbox"
+      class="navigation-checkbox"
+    />
     <label for="nav-toggle" class="navigation-icon noSelect">
       <div class="burger noSelect"></div>
     </label>
@@ -8,10 +13,32 @@
 </template>
 
 <script>
-export default {}
+import { mapState } from 'vuex'
+export default {
+  computed: {
+    ...mapState({
+      navbarSlider: (state) => state.navbarSlider,
+    }),
+    navbarSlider: {
+      get() {
+        return this.$store.state.navbarSlider
+      },
+      set() {
+        if (this.navbarSlider === false) {
+          return this.$store.commit('CHANGE_NAVBAR_SLIDER', true)
+        } else {
+          return this.$store.commit('CHANGE_NAVBAR_SLIDER', false)
+        }
+      },
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped>
+.burger-box {
+  z-index: 12;
+}
 .navigation-icon {
   cursor: pointer;
   height: 1.8rem;

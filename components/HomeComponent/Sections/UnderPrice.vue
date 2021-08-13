@@ -6,7 +6,7 @@
     </div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
-        <div v-for="less in under20" :key="less.id" class="swiper-slide">
+        <div v-for="less in underPrice" :key="less.id" class="swiper-slide">
           <Item
             :image-path="less.cover_image"
             :price="less.price"
@@ -28,7 +28,7 @@ export default {
     Item,
   },
   props: {
-    under20: {
+    underPrice: {
       type: [Array, Object],
       required: true,
     },

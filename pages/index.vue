@@ -1,11 +1,12 @@
 <template>
   <div>
+    <!-- <NavbarSlider></NavbarSlider> -->
     <Header></Header>
     <Recommendation></Recommendation>
     <Bestsellers :best-sellers="bestSellers"></Bestsellers>
     <ForStudents :students="students"></ForStudents>
     <AboutCarousel></AboutCarousel>
-    <Under20 :under20="under20"></Under20>
+    <UnderPrice :under-price="underPrice"></UnderPrice>
     <JustArrived :arrived="arrived"></JustArrived>
     <SpecialPicks></SpecialPicks>
     <BookCategory></BookCategory>
@@ -15,13 +16,15 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 
 import Header from '~/components/HomeComponent/Header'
+// import NavbarSlider from '~/components/DefaultComponent/navbarSlider.vue'
 import Recommendation from '~/components/HomeComponent/Sections/Recommendation'
 import Bestsellers from '~/components/HomeComponent/Sections/Bestsellers'
 import ForStudents from '~/components/HomeComponent/Sections/ForStudents'
 import AboutCarousel from '~/components/HomeComponent/AboutCarousel'
-import Under20 from '~/components/HomeComponent/Sections/Under20'
+import UnderPrice from '~/components/HomeComponent/Sections/UnderPrice'
 import JustArrived from '~/components/HomeComponent/Sections/JustArrived'
 import BookCategory from '~/components/HomeComponent/Sections/BookCategory'
 import SpecialPicks from '~/components/HomeComponent/Sections/SpecialPicks'
@@ -33,11 +36,12 @@ export default {
     Bestsellers,
     ForStudents,
     AboutCarousel,
-    Under20,
+    UnderPrice,
     JustArrived,
     BookCategory,
     SpecialPicks,
     Footer,
+    // NavbarSlider,
   },
 
   async asyncData() {
@@ -49,7 +53,7 @@ export default {
       arrived: response1.data.results,
       students: response2.data.results,
       bestSellers: response3.data.results,
-      under20: response4.data.results,
+      underPrice: response4.data.results,
     }
   },
 
@@ -59,6 +63,12 @@ export default {
     } catch (e) {
       error({ statusCode: 503 })
     }
+  },
+
+  computed: {
+    ...mapState({
+      navbarSlider: (state) => state.navbarSlider,
+    }),
   },
 }
 </script>

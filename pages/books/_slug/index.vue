@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bookDetail.cover_image">
+  <div>
     <NavBar></NavBar>
     <div class="carousel-container">
       <Carousel :elements="elements"></Carousel>
@@ -170,6 +170,7 @@ export default {
     SimilarItems,
     Footer,
   },
+  middleware: ['addView'],
   async asyncData({ params }) {
     const { data } = await axios.get(
       `${process.env.baseUrl}/books/${params.slug}/`

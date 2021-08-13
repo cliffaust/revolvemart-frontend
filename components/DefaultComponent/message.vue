@@ -55,9 +55,9 @@ export default {
   padding: 1rem 2rem;
   border-radius: 1rem;
   background-color: #fff;
-  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.5);
-  -moz-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.5);
-  box-shadow: 0px 0px 15px -1px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 15px -1px rgba(0, 0, 0, 0.3);
   position: fixed;
   width: 280px;
   // bottom: 20px;
