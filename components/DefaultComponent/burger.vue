@@ -43,6 +43,7 @@ export default {
   cursor: pointer;
   height: 1.8rem;
   width: 2rem;
+  padding: 8px 7px 9px 5px;
 
   &:hover .burger::before {
     background-color: $primary-bgcolor-2;
