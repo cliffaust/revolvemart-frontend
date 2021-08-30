@@ -5,10 +5,12 @@
     </div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
-        <div
+        <nuxt-link
           v-for="arrive in arrived.slice(0, 7)"
           :key="arrive.id"
+          :to="{ path: `/books/${arrive.slug}` }"
           class="swiper-slide"
+          append
         >
           <Item
             :image-path="arrive.cover_image"
@@ -18,7 +20,7 @@
             :author="arrive.author"
             :discount-percent="Math.floor(arrive.discount_percentage)"
           ></Item>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -98,6 +100,8 @@ export default {
 .swiper-slide {
   width: 170px;
   height: 265px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .swiper-wrapper {

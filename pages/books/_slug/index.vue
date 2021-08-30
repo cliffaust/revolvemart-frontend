@@ -138,7 +138,7 @@
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
-    <SimilarItems :similar-items="arrived"></SimilarItems>
+    <SimilarItems :similar-items="similarItems"></SimilarItems>
     <Footer></Footer>
   </div>
 </template>
@@ -179,10 +179,14 @@ export default {
       `${process.env.baseUrl}/books/${params.slug}/reviews/`
     )
     const response = await axios.get(`${process.env.baseUrl}/books/?page=2`)
+    const similarItems = await axios.get(
+      `${process.env.baseUrl}/books/recommendations/${data.title}/`
+    )
     return {
       arrived: response.data.results,
       bookDetail: data,
       reviews: reviews.data.results,
+      similarItems: similarItems.data.results,
     }
   },
 

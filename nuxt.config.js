@@ -66,5 +66,6 @@ export default {
     baseUrl:
       process.env.BASE_URL ||
       'https://revolvemart-backend.herokuapp.com/api/v1',
+    // 'http://localhost:8000/api/v1',
   },
 }

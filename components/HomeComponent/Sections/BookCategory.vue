@@ -4,42 +4,52 @@
 
     <ul class="category-list">
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Action &
-        Adventure
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Action & Adventure</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Drama
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Drama</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Horror
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Horror</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Religious
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Religious</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Educational
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Educational</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Cooking
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Cooking</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />History
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">History</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Crime
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Crime</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Science
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Science</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Sci-fi
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Sci-fi</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Romance
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Romance</div>
       </li>
       <li class="category-item">
-        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />Finance &
-        Business
+        <font-awesome-icon :icon="['fas', 'circle']" class="icon" />
+        <div class="text-category">Finance & Business</div>
       </li>
     </ul>
   </div>
@@ -75,6 +85,8 @@ export default {}
   margin-top: 1rem;
   list-style: none;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
   margin-left: 7px;
 
@@ -84,11 +96,21 @@ export default {}
     align-items: center;
     margin-bottom: 1rem;
     flex: 0 0 50%;
+    padding: 0 0.5rem;
+
+    .text-category {
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
     .icon {
       width: 10px;
       height: 20px;
       margin-right: 0.6rem;
+      // margin-top: -3px;
     }
   }
 }

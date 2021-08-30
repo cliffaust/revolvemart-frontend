@@ -6,7 +6,13 @@
     </div>
     <div v-swiper="swiperOption" class="swiper-container">
       <div class="swiper-wrapper">
-        <div v-for="less in underPrice" :key="less.id" class="swiper-slide">
+        <nuxt-link
+          v-for="less in underPrice"
+          :key="less.id"
+          :to="{ path: `/books/${less.slug}` }"
+          class="swiper-slide"
+          append
+        >
           <Item
             :image-path="less.cover_image"
             :price="less.price"
@@ -15,7 +21,7 @@
             :author="less.author"
             :discount-percent="Math.floor(less.discount_percentage)"
           ></Item>
-        </div>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -95,6 +101,8 @@ export default {
 .swiper-slide {
   width: 170px;
   height: 265px;
+  text-decoration: none;
+  color: inherit;
 }
 
 .swiper-wrapper {
