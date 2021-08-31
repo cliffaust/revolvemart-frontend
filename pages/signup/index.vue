@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="signup-container">
     <navbar></navbar>
     <div class="singin-container">
       <div class="header-text">Register</div>
@@ -301,5 +301,9 @@ export default {
   100% {
     transform: rotateZ(0deg);
   }
+}
+
+.signup-container {
+  height: 100vh;
 }
 </style>
