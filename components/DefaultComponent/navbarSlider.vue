@@ -10,18 +10,57 @@
       @click.stop
     >
       <div class="links">
-        <div class="link">Buy a book</div>
-        <div class="link">Sell your book</div>
-        <div class="link">For student</div>
-        <div class="link">Weekly special</div>
-        <div class="link">Buy used books</div>
-        <div class="link">Buy new books</div>
-        <div class="link">How we work</div>
-        <div class="link">About us</div>
-        <div class="link">Contact us</div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'shopping-bag']" class="icon" />Buy
+          a book
+        </div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'book']" class="icon" />Sell your
+          book
+        </div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'user-graduate']" class="icon" />For
+          student
+        </div>
+        <div class="link">
+          <font-awesome-icon
+            :icon="['fas', 'user-graduate']"
+            class="icon"
+          />Weekly special
+        </div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'book']" class="icon" />Buy used
+          books
+        </div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'book']" class="icon" />Buy new
+          books
+        </div>
+        <div class="link">
+          <font-awesome-icon :icon="['fas', 'briefcase']" class="icon" />How we
+          work
+        </div>
+        <div class="link">
+          <font-awesome-icon
+            :icon="['fas', 'address-card']"
+            class="icon"
+          />About us
+        </div>
+        <div class="link">
+          <font-awesome-icon
+            :icon="['fas', 'address-card']"
+            class="icon"
+          />Contact us
+        </div>
         <div class="signup-login">
-          <nuxt-link to="/signup" class="link">Signup</nuxt-link>
-          <nuxt-link to="/login" class="link">Login</nuxt-link>
+          <nuxt-link to="/signup" class="link signup"
+            >Signup<font-awesome-icon :icon="['fas', 'user-plus']" class="icon"
+          /></nuxt-link>
+          <nuxt-link to="/login" class="link login"
+            >Login<font-awesome-icon
+              :icon="['fas', 'sign-in-alt']"
+              class="icon"
+          /></nuxt-link>
         </div>
       </div>
     </div>
@@ -109,42 +148,50 @@ export default {
   .link {
     font-size: 1.6rem;
     text-decoration: none;
-    padding: 0.4rem 0;
+    padding: 1rem 0;
     font-weight: 700;
     color: inherit;
     position: relative;
     cursor: pointer;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    &::after {
-      content: '';
-      width: 100%;
-      height: 3px;
-      background-color: #fca21100;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+    &:hover {
+      background-color: #f4f4f4;
     }
+
+    // &::after {
+    //   content: '';
+    //   width: 100%;
+    //   height: 3px;
+    //   background-color: #fca21100;
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    // }
 
     &:not(:last-child) {
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
-    &::before {
-      content: '';
-      width: 0%;
-      height: 3px;
-      background-color: #fca311;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      transition: 0.3s ease;
-    }
+    // &::before {
+    //   content: '';
+    //   width: 0%;
+    //   height: 3px;
+    //   background-color: #fca311;
+    //   position: absolute;
+    //   bottom: 0;
+    //   left: 0;
+    //   right: 0;
+    //   transition: 0.3s ease;
+    // }
 
-    &:hover::before {
-      width: 100%;
-    }
+    // &:hover::before {
+    //   width: 100%;
+    // }
   }
 }
 
@@ -179,5 +226,17 @@ export default {
   z-index: -1;
   background-color: rgba(0, 0, 0, 0);
   transition: z-index 0.8s ease;
+}
+
+.icon {
+  margin-right: 1rem;
+}
+
+.signup,
+.login {
+  .icon {
+    margin-left: 1rem;
+    margin-right: 0;
+  }
 }
 </style>
