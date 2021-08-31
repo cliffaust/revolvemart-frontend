@@ -118,6 +118,7 @@ export default {
   background-color: #fff;
   z-index: 10;
   transform: translateX(0);
+  overflow: scroll;
   transition: all 0.3s linear;
 }
 
