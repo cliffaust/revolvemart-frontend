@@ -4,7 +4,7 @@
     <div class="container">
       <img
         class="image"
-        src="~/assets/logo/SpecialPicksImages/image1-small.jpg"
+        src="~/assets/SpecialPicksImages/image1-small.jpg"
         alt="Image Carousel"
       />
       <div class="header">

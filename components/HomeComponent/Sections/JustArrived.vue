@@ -42,7 +42,7 @@ export default {
     return {
       swiperOption: {
         slidesPerView: 'auto',
-        spaceBetween: 30,
+        spaceBetween: 20,
         centeredSlides: true,
         loop: true,
       },
@@ -98,7 +98,7 @@ export default {
 }
 
 .swiper-slide {
-  width: 170px;
+  width: 180px !important;
   height: 265px;
   text-decoration: none;
   color: inherit;

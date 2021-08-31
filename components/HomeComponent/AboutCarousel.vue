@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import image1 from '@/assets/logo/modal/image1-small.jpg'
-import image2 from '@/assets/logo/modal/image2-small.jpg'
-import image3 from '@/assets/logo/modal/image3-small.jpg'
+import image1 from '@/assets/modalImages/image1-small.jpg'
+import image2 from '@/assets/modalImages/image2-small.jpg'
+import image3 from '@/assets/modalImages/image3-small.jpg'
 import Carousel from '~/components/DefaultComponent/carousel'
 export default {
   components: {

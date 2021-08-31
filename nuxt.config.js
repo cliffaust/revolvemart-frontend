@@ -33,6 +33,7 @@ export default {
     },
     {
       src: '~/plugins/swiper.js',
+      mode: 'client',
     },
     {
       src: '~/plugins/animate.js',
