@@ -1,5 +1,5 @@
 <template>
-  <div class="cart-item">
+  <nuxt-link :to="{ path: `/books/${book.slug}` }" class="cart-item">
     <div class="image-box">
       <img class="image" :src="book.cover_image" alt="Image" />
     </div>
@@ -9,17 +9,29 @@
       <div class="quantity text-bold">Qty 2</div>
       <div class="price">GH¢{{ book.price }}</div>
 
-      <div class="remove-item mt-1">Remove</div>
+      <div class="remove-item mt-1" @click="removeCart">Remove</div>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
+import Cookies from 'js-cookie'
+// import axios from 'axios'
 export default {
   props: {
     book: {
       type: [Object, Array],
       default: null,
+    },
+  },
+
+  methods: {
+    removeCart() {
+      const token = Cookies.get('token')
+
+      if (token) {
+        return ''
+      }
     },
   },
 }
@@ -28,7 +40,7 @@ export default {
 <style lang="scss" scoped>
 .cart-item {
   margin-top: 1.5em;
-  width: 85%;
+  width: 90%;
   padding: 0.5rem;
   border-radius: 1rem;
   margin: 0 auto;
@@ -36,6 +48,8 @@ export default {
   justify-content: space-between;
   padding: 1rem;
   position: relative;
+  text-decoration: none;
+  color: inherit;
   -webkit-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
   -moz-box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
   box-shadow: 0px 0px 11px -1px rgba(0, 0, 0, 0.15);
@@ -43,12 +57,18 @@ export default {
 
 .image-box {
   height: 120px;
+  width: 120px;
+  flex: 0 0 45%;
 
   .image {
     height: 100%;
-    width: 120px;
+    width: 100%;
     border-radius: 0.5rem;
   }
+}
+
+.description {
+  flex: 0 0 50%;
 }
 
 .remove-item {
@@ -56,6 +76,11 @@ export default {
   font-size: 1.4rem;
   cursor: pointer;
   color: #e63947;
+  padding: 0.6rem 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #e6394736;
+  font-weight: bold;
+  z-index: 10;
 }
 
 .title {

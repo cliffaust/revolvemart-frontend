@@ -40,6 +40,12 @@
           <font-awesome-icon :icon="['fas', 'briefcase']" class="icon" />How we
           work
         </div>
+        <nuxt-link to="/cart" class="link">
+          <font-awesome-icon
+            :icon="['fas', 'shopping-cart']"
+            class="icon"
+          />Your Cart
+        </nuxt-link>
         <div class="link">
           <font-awesome-icon
             :icon="['fas', 'address-card']"
@@ -158,6 +164,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-decoration: none;
 
     &:hover {
       background-color: #f4f4f4;
