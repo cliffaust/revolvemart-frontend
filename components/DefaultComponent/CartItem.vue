@@ -51,8 +51,14 @@ export default {
               Authorization: 'Token ' + this.$store.state.signin.token,
             },
           })
-          .then(() => location.reload())
-          .catch((err) => console.log(err.response))
+          .then(() => {
+            console.log('User')
+            location.reload()
+          })
+          .catch((err) => {
+            console.log('Error')
+            console.log(err.response.data)
+          })
       } else if (this.$store.state.cartVal) {
         let cart = this.$store.state.cartVal
         cart = JSON.parse(decodeURIComponent(cart))
