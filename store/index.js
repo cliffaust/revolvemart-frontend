@@ -5,6 +5,7 @@ export const state = () => ({
   navbarSlider: false,
   cart: [],
   cartVal: null,
+  inCart: false,
 })
 
 export const mutations = {
@@ -20,6 +21,10 @@ export const mutations = {
   ADD_CART(state, value) {
     state.cartVal = value
   },
+
+  ALREADY_IN_CART(state, value) {
+    state.inCart = value
+  },
 }
 
 export const actions = {
@@ -27,48 +32,24 @@ export const actions = {
     commit('CHANGE_NAVBAR_SLIDER', boolVal)
   },
 
-  // async cartItems({ commit }, storeVal) {
-  //   const store = storeVal
-
-  //   if (store.state.signin.token) {
-  //     const { data } = await axios.get(`${process.env.baseUrl}/user-cart/`, {
-  //       headers: {
-  //         Authorization: 'Token ' + store.state.signin.token,
-  //       },
-  //     })
-  //     commit('CART_ITEMS', data.results)
-  //   } else if (store.state.cartVal) {
-  //     const cartItems = []
-
-  //     let cart = store.state.cartVal
-  //     cart = JSON.parse(decodeURIComponent(cart))
-
-  //     for (const item of cart) {
-  //       await axios
-  //         .get(`${process.env.baseUrl}/books/${item.slug}/`)
-  //         .then((res) => {
-  //           cartItems.push({ book: res.data })
-  //         })
-  //         .catch((err) => {
-  //           console.log(err)
-  //         })
-  //     }
-
-  //     // console.log('Then', cartItems)
-
-  //     commit('CART_ITEMS', cartItems)
-  //   }
-  // },
-
   addToCart({ commit }, bookSlug) {
     const token = Cookies.get('token')
 
     if (token) {
-      axios.post(`${process.env.baseUrl}/add-to-cart/`, {
-        headers: {
-          Authorization: 'Token ' + token,
-        },
-      })
+      axios
+        .post(
+          `${process.env.baseUrl}/books/${bookSlug}/add-to-cart/`,
+          { quantity: 1 },
+          {
+            headers: {
+              Authorization: 'Token ' + token,
+            },
+          }
+        )
+        .then(() => location.reload())
+        .catch((err) => {
+          console.log(err.response)
+        })
     } else if (!token) {
       let cookieVal = Cookies.get('cart')
 

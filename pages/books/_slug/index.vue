@@ -46,7 +46,11 @@
         @click="changeShowMessageBox"
         >Buy now</Button
       >
+      <nuxt-link v-if="inCart" to="/cart" :style="{ width: '45%' }">
+        <Button button-class="btn-open">View in cart</Button>
+      </nuxt-link>
       <Button
+        v-else
         button-class="btn-open"
         :style="{ width: '45%' }"
         @click="addToCart"
@@ -138,6 +142,9 @@
     <Message v-if="bookDetail.stock === 0" :show-message-box="showMessageBox"
       >Sorry, this item is out of stock</Message
     >
+    <!-- <Message v-if="inCart" :show-message-box="showMessageBox"
+      >Item already in caart</Message
+    > -->
     <SimilarItems :similar-items="similarItems"></SimilarItems>
     <Footer></Footer>
   </div>
@@ -145,6 +152,7 @@
 
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 import Carousel from '~/components/DefaultComponent/carousel'
 import NavBar from '~/components/DefaultComponent/navbar'
 import Button from '~/components/DefaultComponent/baseButton'
@@ -204,6 +212,37 @@ export default {
     }
   },
 
+  async fetch() {
+    const { store, params } = this.$nuxt.context
+    const token = store.state.signin.token
+    let exist = false
+
+    if (token) {
+      try {
+        const { data } = await axios.get(`${process.env.baseUrl}/user-cart/`, {
+          headers: {
+            Authorization: 'Token ' + token,
+          },
+        })
+
+        exist = data.results.some((val) => {
+          return val.book.slug === params.slug
+        })
+      } catch (error) {
+        console.log(error.response)
+      }
+      store.commit('ALREADY_IN_CART', exist)
+    } else if (store.state.cartVal) {
+      let cart = store.state.cartVal
+      cart = JSON.parse(decodeURIComponent(cart))
+
+      exist = cart.some((val) => {
+        return val.slug === params.slug
+      })
+      store.commit('ALREADY_IN_CART', exist)
+    }
+  },
+
   computed: {
     bookComputedImages() {
       const images = this.bookDetail.book_images.map(
@@ -211,6 +250,7 @@ export default {
       )
       return images
     },
+    ...mapState(['inCart']),
     averageRating() {
       let totalRating = 0
       this.reviews.forEach((review) => {
@@ -266,12 +306,12 @@ export default {
       }, 2000)
     },
 
-    addToCart() {
+    async addToCart() {
+      await this.$store.dispatch('addToCart', this.$route.params.slug)
       this.showMessageBox = true
       setTimeout(() => {
         this.showMessageBox = false
       }, 2000)
-      this.$store.dispatch('addToCart', this.$route.params.slug)
     },
   },
 }
