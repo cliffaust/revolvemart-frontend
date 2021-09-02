@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div class="header-text">
       Dive Into
       <div class="revolvemart-text-logo">RevolveMart</div>
@@ -55,12 +55,17 @@ export default {
   height: 325px;
 }
 
+.main-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .header-text {
   margin-bottom: 1.5rem;
   font-size: 2.5rem;
   font-weight: 700;
   margin-left: 0.5rem;
-  font-family: $secondary-font-2;
+  font-family: $secondary-font-3;
 
   .revolvemart-text-logo {
     display: inline-block;

@@ -23,10 +23,11 @@ export default {
   width: 100%;
   border-radius: 1rem;
   text-transform: uppercase;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   color: #ffff;
   cursor: pointer;
   border: 2px solid $primary-bgcolor-1;
+  font-family: $secondary-font-1;
 
   &:focus {
     outline: none;
@@ -42,9 +43,10 @@ export default {
   text-transform: uppercase;
   transition: 0.5s ease;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   cursor: pointer;
   width: 100%;
+  font-family: $secondary-font-1;
 
   &:hover {
     background-color: $primary-bgcolor-2;
@@ -64,9 +66,10 @@ export default {
   text-transform: uppercase;
   transition: 0.5s ease;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   cursor: pointer;
   width: 100%;
+  font-family: $secondary-font-1;
 
   &:hover {
     background-color: transparent;
@@ -90,9 +93,10 @@ export default {
   text-transform: uppercase;
   transition: 0.5s ease;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   cursor: pointer;
   width: 100%;
+  font-family: $secondary-font-1;
 
   &:focus {
     outline: none;
@@ -108,9 +112,10 @@ export default {
   text-transform: uppercase;
   transition: 0.5s ease;
   font-weight: 600;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   cursor: pointer;
   width: 100%;
+  font-family: $secondary-font-1;
 
   &:focus {
     outline: none;

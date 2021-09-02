@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-container">
     <div class="header-text">Weekly Special Pick</div>
     <div class="container">
       <img
@@ -22,12 +22,31 @@
 <script></script>
 
 <style lang="scss" scoped>
+.main-container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .header-text {
+  display: block;
+  padding: 0.8rem;
+  position: relative;
   margin-bottom: 0.5rem;
   font-size: 2.5rem;
+  font-family: $secondary-font-3;
   font-weight: 700;
   margin-left: 0.5rem;
-  font-family: $secondary-font-2;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 3px;
+    margin-left: 1rem;
+    background-color: $primary-bgcolor-2;
+  }
 }
 
 .gsap-test {
