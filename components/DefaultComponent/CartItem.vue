@@ -1,22 +1,37 @@
 <template>
-  <nuxt-link :to="{ path: `/books/${book.slug}` }" class="cart-item">
+  <nuxt-link :to="{ path: `/books/${book.book.slug}` }" class="cart-item">
     <div class="image-box">
-      <img class="image" :src="book.cover_image" alt="Image" />
+      <img class="image" :src="book.book.cover_image" alt="Image" />
     </div>
     <div class="description">
-      <div class="title">{{ book.author }}</div>
-      <div class="author">By {{ book.author }}</div>
-      <div class="quantity text-bold">Qty 2</div>
-      <div class="price">GH¢{{ book.price }}</div>
+      <div class="title">{{ book.book.title }}</div>
+      <div class="author">By {{ book.book.author }}</div>
+      <div class="quantity text-bold">{{ book.book.quantity }}</div>
 
-      <div class="remove-item mt-1" @click="removeCart">Remove</div>
+      <div class="price-box">
+        <div v-if="book.book.discount_price" class="new-price">
+          GH¢{{ book.book.discount_price }}
+        </div>
+        <div
+          class="price"
+          :style="[
+            book.book.discount_price
+              ? { 'text-decoration': 'line-through', color: '#e63947' }
+              : '',
+          ]"
+        >
+          GH¢{{ book.book.price }}
+        </div>
+      </div>
+
+      <div class="remove-item mt-1" @click.prevent="removeCart">Remove</div>
     </div>
   </nuxt-link>
 </template>
 
 <script>
 import Cookies from 'js-cookie'
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   props: {
     book: {
@@ -26,11 +41,25 @@ export default {
   },
 
   methods: {
-    removeCart() {
+    async removeCart() {
       const token = Cookies.get('token')
 
       if (token) {
-        return ''
+        await axios.delete(`${process.env.baseUrl}/user-cart/${this.book.id}`, {
+          headers: {
+            Authorization: 'Token ' + this.$store.state.signin.token,
+          },
+        })
+        location.reload()
+      } else if (this.$store.state.cartVal) {
+        let cart = this.$store.state.cartVal
+        cart = JSON.parse(decodeURIComponent(cart))
+
+        const newCart = cart.filter((el) => el.slug !== this.book.book.slug)
+
+        Cookies.set('cart', JSON.stringify(newCart))
+
+        location.reload()
       }
     },
   },
@@ -74,17 +103,22 @@ export default {
 .remove-item {
   float: right;
   font-size: 1.4rem;
-  cursor: pointer;
+  // cursor: pointer;
   color: #e63947;
   padding: 0.6rem 0.5rem;
   border-radius: 0.5rem;
   background-color: #e6394736;
   font-weight: bold;
-  z-index: 10;
+  z-index: 100;
 }
 
 .title {
   font-size: 1.4rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .quantity {
@@ -103,9 +137,19 @@ export default {
   text-overflow: ellipsis;
 }
 
-.price {
-  font-size: 1.3rem;
-  font-weight: 600;
+.price-box {
+  display: flex;
   margin-top: 1rem;
+
+  .price {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .new-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-right: 0.8rem;
+  }
 }
 </style>

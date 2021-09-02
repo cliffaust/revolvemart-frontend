@@ -44,7 +44,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async signup({ commit }, payload) {
+  async signup({ commit, rootState }, payload) {
     try {
       const response = await axios.post(
         `${process.env.baseUrl}/rest-auth/registration/`,
@@ -52,6 +52,33 @@ export const actions = {
       )
       Cookies.set('token', response.data.key)
       commit('ADD_TOKEN', response.data.key)
+      if (rootState.cartVal) {
+        // const cartItems = []
+
+        let cart = rootState.cartVal
+        cart = JSON.parse(decodeURIComponent(cart))
+
+        // console.log(cart)
+
+        for (const item of cart) {
+          await axios
+            .post(
+              `${process.env.baseUrl}/books/${item.slug}/add-to-cart/`,
+              {
+                quantity: 1,
+              },
+              {
+                headers: {
+                  Authorization: 'Token ' + response.data.key,
+                },
+              }
+            )
+            .catch((err) => {
+              console.log(err.response)
+            })
+        }
+        Cookies.remove('cart')
+      }
       this.$router.replace(payload.redirect, () => this.$router.go(0))
     } catch (error) {
       commit('STOP_LOADING_STATE')
@@ -60,7 +87,7 @@ export const actions = {
     }
   },
 
-  async login({ commit }, payload) {
+  async login({ commit, rootState }, payload) {
     try {
       const response = await axios.post(
         `${process.env.baseUrl}/rest-auth/login/`,
@@ -68,6 +95,36 @@ export const actions = {
       )
       Cookies.set('token', response.data.key)
       commit('ADD_TOKEN', response.data.key)
+
+      if (rootState.cartVal) {
+        // const cartItems = []
+
+        let cart = rootState.cartVal
+        cart = JSON.parse(decodeURIComponent(cart))
+
+        // console.log(cart)
+
+        for (const item of cart) {
+          await axios
+            .post(
+              `${process.env.baseUrl}/books/${item.slug}/add-to-cart/`,
+              {
+                quantity: 1,
+              },
+              {
+                headers: {
+                  Authorization: 'Token ' + response.data.key,
+                },
+              }
+            )
+            .catch((err) => {
+              console.log(err.response)
+            })
+        }
+
+        Cookies.remove('cart')
+      }
+
       this.$router.replace(payload.redirect, () => this.$router.go(0))
     } catch (error) {
       commit('STOP_LOADING_STATE')

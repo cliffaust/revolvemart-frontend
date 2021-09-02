@@ -49,7 +49,7 @@
       <Button
         button-class="btn-open"
         :style="{ width: '45%' }"
-        @click="changeShowMessageBox"
+        @click="addToCart"
         >Add to cart</Button
       >
     </div>
@@ -264,6 +264,14 @@ export default {
       setTimeout(() => {
         this.showMessageBox = false
       }, 2000)
+    },
+
+    addToCart() {
+      this.showMessageBox = true
+      setTimeout(() => {
+        this.showMessageBox = false
+      }, 2000)
+      this.$store.dispatch('addToCart', this.$route.params.slug)
     },
   },
 }

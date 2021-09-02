@@ -1,5 +1,5 @@
 <template>
-  <div class="login-container">
+  <div class="login-main-container">
     <navbar></navbar>
     <div v-if="loginError" class="login-server-error">
       We couldn’t find an account matching the email or password you entered.
@@ -190,7 +190,7 @@ export default {
   }
 }
 
-.login-container {
+.login-main-container {
   height: 100vh;
 }
 </style>

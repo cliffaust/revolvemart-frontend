@@ -19,6 +19,12 @@ export default {
     ],
   },
 
+  router: {
+    middleware: ['checkToken', 'addCart'],
+  },
+
+  loading: { color: '#fca311', height: '3px', duration: 5000 },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/variables.scss', '~/assets/scss/utilities.scss'],
 
