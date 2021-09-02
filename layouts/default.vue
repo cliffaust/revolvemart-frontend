@@ -26,4 +26,12 @@ body {
   font-family: $primary-font;
   color: $primary-text-color;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
 </style>
