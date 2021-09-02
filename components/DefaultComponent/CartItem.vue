@@ -46,7 +46,7 @@ export default {
 
       if (token) {
         await axios
-          .delete(`${process.env.baseUrl}/user-cart/${this.book.id}`, {
+          .delete(`${process.env.baseUrl}/user-cart/${this.book.id}/`, {
             headers: {
               Authorization: 'Token ' + this.$store.state.signin.token,
             },
