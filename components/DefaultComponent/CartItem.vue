@@ -45,12 +45,14 @@ export default {
       const token = Cookies.get('token')
 
       if (token) {
-        await axios.delete(`${process.env.baseUrl}/user-cart/${this.book.id}`, {
-          headers: {
-            Authorization: 'Token ' + this.$store.state.signin.token,
-          },
-        })
-        location.reload()
+        await axios
+          .delete(`${process.env.baseUrl}/user-cart/${this.book.id}`, {
+            headers: {
+              Authorization: 'Token ' + this.$store.state.signin.token,
+            },
+          })
+          .then(() => location.reload())
+          .catch((err) => console.log(err.response))
       } else if (this.$store.state.cartVal) {
         let cart = this.$store.state.cartVal
         cart = JSON.parse(decodeURIComponent(cart))
