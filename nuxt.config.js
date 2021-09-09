@@ -42,6 +42,10 @@ export default {
       mode: 'client',
     },
     {
+      src: '~/plugins/payment.js',
+      mode: 'client',
+    },
+    {
       src: '~/plugins/animate.js',
     },
     '~/plugins/veeValidate.js',

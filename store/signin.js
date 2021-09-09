@@ -12,14 +12,14 @@ export const mutations = {
   ADD_TOKEN(state, data) {
     state.token = data
   },
-  async LOGOUT(state) {
-    state.token = null
+  async LOGOUT(state, token) {
     try {
       await axios.post(`${process.env.baseUrl}/rest-auth/logout/`, '', {
         headers: {
-          Authorization: 'Token ' + Cookies.get('token'),
+          Authorization: 'Token ' + state.token,
         },
       })
+      state.token = null
       Cookies.remove('token')
       this.$router.push('/')
     } catch (error) {
@@ -28,6 +28,7 @@ export const mutations = {
         this.$router.push('/')
       }
     }
+    console.log(token)
   },
   LOADING_STATE(state) {
     state.loading = true
