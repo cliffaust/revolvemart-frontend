@@ -48,7 +48,9 @@
           previously saved items, <nuxt-link to="/login">sign in</nuxt-link>
         </div>
         <div class="btn-container">
-          <baseButton button-class="btn-primary">Check Out</baseButton>
+          <baseButton button-class="btn-primary"
+            >Continue to Check Out</baseButton
+          >
         </div>
       </div>
       <Footer></Footer>
@@ -79,7 +81,7 @@
 <script>
 import axios from 'axios'
 // import Cookies from 'js-cookie'
-import { mapState } from 'vuex'
+// import { mapState } from 'vuex'
 import CartItem from '~/components/DefaultComponent/CartItem.vue'
 import NavBar from '~/components/DefaultComponent/navbar'
 import Footer from '~/components/HomeComponent/Footer.vue'
@@ -98,16 +100,27 @@ export default {
     },
   },
 
-  async fetch() {
-    const { store } = this.$nuxt.context
+  // async asyncData({ store }) {
+  //   const { data } = await axios.get(`${process.env.baseUrl}/user-cart/`, {
+  //     headers: {
+  //       Authorization: 'Token ' + store.state.signin.token,
+  //     },
+  //   })
+  //   return {
+  //     cartItems: data.results,
+  //   }
+  // },
 
+  async asyncData({ store }) {
     if (store.state.signin.token) {
       const { data } = await axios.get(`${process.env.baseUrl}/user-cart/`, {
         headers: {
           Authorization: 'Token ' + store.state.signin.token,
         },
       })
-      store.commit('CART_ITEMS', data.results)
+      return {
+        cart: data.results,
+      }
     } else if (store.state.cartVal) {
       const cartItems = []
 
@@ -124,8 +137,9 @@ export default {
             console.log(err.response)
           })
       }
-
-      store.commit('CART_ITEMS', cartItems)
+      return {
+        cart: cartItems,
+      }
     }
   },
 
@@ -150,7 +164,7 @@ export default {
       return parseFloat(price)
     },
 
-    ...mapState(['cart']),
+    // ...mapState(['cart']),
 
     totalEstimatedShippingCost() {
       let price = 0

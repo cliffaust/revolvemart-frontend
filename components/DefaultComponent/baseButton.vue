@@ -1,5 +1,10 @@
 <template>
-  <button :class="buttonClass" class="noSelect" v-on="$listeners">
+  <button
+    :class="[buttonClass, buttonClassDisabled]"
+    :style="{ textTransform: textTransform }"
+    class="noSelect"
+    v-on="$listeners"
+  >
     <slot></slot>
   </button>
 </template>
@@ -10,6 +15,14 @@ export default {
     buttonClass: {
       type: String,
       required: true,
+    },
+    buttonClassDisabled: {
+      type: String,
+      default: '',
+    },
+    textTransform: {
+      type: String,
+      default: 'uppercase',
     },
   },
 }
@@ -22,7 +35,7 @@ export default {
   font-weight: 600;
   width: 100%;
   border-radius: 1rem;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   font-size: 1.6rem;
   color: #ffff;
   cursor: pointer;
@@ -120,5 +133,10 @@ export default {
   &:focus {
     outline: none;
   }
+}
+
+.btn-disabled {
+  opacity: 0.5;
+  cursor: unset;
 }
 </style>

@@ -6,7 +6,7 @@
       class="input"
       type="checkbox"
       :value="value"
-      @input="updateValue"
+      @change="change"
     />
     <label v-if="label" for="others" class="label">{{ label }}</label>
   </div>
@@ -26,8 +26,8 @@ export default {
     },
   },
   methods: {
-    updateValue(event) {
-      this.$emit('input', event.target.value)
+    change(e) {
+      this.$emit('input', e.target.checked ? 'true' : 'false')
     },
   },
 }

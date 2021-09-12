@@ -40,36 +40,12 @@
       <div class="autor text-medium">By {{ bookDetail.author }}</div>
     </div>
     <div class="btn-box mt-2 px-1">
-      <client-only>
-        <div v-if="token && bookDetail.stock !== 0" :style="{ width: '45%' }">
-          <Payment
-            :class="'paymentBtn'"
-            :amount="
-              parseInt(
-                bookDetail.discount_price.toString().replace('.', ''),
-                10
-              ) || parseInt(bookDetail.price.toString().replace('.', ''), 10)
-            "
-            :email="user_profile.email"
-            :paystackkey="'pk_test_ed65a31e407a5efb43493ea023ebb86b3170e0b4'"
-            :callback="callback"
-            :reference="reference"
-            :close="closePayment"
-            :embed="false"
-            :currency="'GHS'"
-          >
-            <i class="fas fa-money-bill-alt"></i>
-            Buy now
-          </Payment>
-        </div>
-        <Button
-          v-else
-          button-class="btn-primary"
-          :style="{ width: '45%' }"
-          @click="buyItem"
-          >Buy now</Button
-        >
-      </client-only>
+      <Button
+        button-class="btn-primary"
+        :style="{ width: '45%' }"
+        @click="buyItem"
+        >Buy now</Button
+      >
       <nuxt-link v-if="inCart" to="/cart" :style="{ width: '45%' }">
         <Button button-class="btn-open">View in cart</Button>
       </nuxt-link>
@@ -178,7 +154,6 @@
 import axios from 'axios'
 import { mapState } from 'vuex'
 import Cookies from 'js-cookie'
-import paystack from 'vue-paystack/src/paystack.vue'
 import Carousel from '~/components/DefaultComponent/carousel'
 import NavBar from '~/components/DefaultComponent/navbar'
 import Button from '~/components/DefaultComponent/baseButton'
@@ -203,7 +178,6 @@ export default {
     AllReviews,
     SimilarItems,
     Footer,
-    Payment: paystack,
   },
   middleware: ['addView'],
   async asyncData({ params, store }) {
@@ -292,6 +266,24 @@ export default {
       return totalRating / this.reviews.length
     },
 
+    price() {
+      if (this.bookDetail.discount_price) {
+        return parseInt(
+          (Math.floor(this.bookDetail.discount_price * 100) / 100)
+            .toFixed(2)
+            .replace('.', ''),
+          10
+        )
+      } else {
+        return parseInt(
+          (Math.floor(this.bookDetail.price * 100) / 100)
+            .toFixed(2)
+            .replace('.', ''),
+          10
+        )
+      }
+    },
+
     token() {
       return Cookies.get('token')
     },
@@ -347,13 +339,6 @@ export default {
       )
     },
 
-    callback(response) {
-      location.reload()
-    },
-    closePayment() {
-      console.log('Payment closed')
-    },
-
     buyItem() {
       this.showMessageBox = true
       setTimeout(() => {
@@ -361,16 +346,22 @@ export default {
       }, 2000)
 
       const token = Cookies.get('token')
-      if (!token && this.bookDetail.stock !== 0) {
+      if (!token && this.bookDetail.stock > 0) {
         this.$router.push({
           path: '/login',
           query: { redirect: `${this.$route.path}` },
+        })
+      } else if (token && this.bookDetail.stock > 0) {
+        this.$router.push({
+          path: `/books/${this.bookDetail.slug}/shipping-address`,
         })
       }
     },
 
     async addToCart() {
-      await this.$store.dispatch('addToCart', this.$route.params.slug)
+      if (this.bookDetail.stock > 0) {
+        await this.$store.dispatch('addToCart', this.$route.params.slug)
+      }
       this.showMessageBox = true
       setTimeout(() => {
         this.showMessageBox = false
@@ -387,33 +378,9 @@ export default {
   width: 100%;
 }
 
-// .modal {
-//   height: 100%;
-//   width: 100%;
-//   position: fixed;
-// }
-
 .review-btn {
   padding: 0 10px;
   margin-bottom: 15px;
-}
-
-.paymentBtn {
-  width: 100%;
-  padding: 1.2rem 1rem;
-  background-color: $primary-bgcolor-1;
-  font-weight: 600;
-  border-radius: 1rem;
-  text-transform: uppercase;
-  font-size: 1.6rem;
-  color: #ffff;
-  cursor: pointer;
-  border: 2px solid $primary-bgcolor-1;
-  font-family: $secondary-font-1;
-
-  &:focus {
-    outline: none;
-  }
 }
 
 .carousel-container {

@@ -52,7 +52,6 @@ export default {
             },
           })
           .then(() => {
-            console.log('User')
             location.reload()
           })
           .catch((err) => {

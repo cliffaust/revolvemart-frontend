@@ -93,7 +93,6 @@ export default {
       display: flex;
       justify-content: center;
       text-decoration: none;
-      color: inherit;
       align-items: center;
       top: -10px;
       left: 15px;
