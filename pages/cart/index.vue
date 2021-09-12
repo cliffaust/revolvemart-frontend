@@ -47,11 +47,18 @@
           You are currently not signed in. To save these items or see your
           previously saved items, <nuxt-link to="/login">sign in</nuxt-link>
         </div>
-        <div class="btn-container">
-          <baseButton button-class="btn-primary"
-            >Continue to Check Out</baseButton
-          >
-        </div>
+        <nuxt-link
+          v-slot="{ href, navigate }"
+          custom
+          :to="{ path: `shipping-address/` }"
+          append
+        >
+          <div :href="href" class="btn-container" @click="navigate">
+            <baseButton button-class="btn-primary"
+              >Continue to Check Out</baseButton
+            >
+          </div>
+        </nuxt-link>
       </div>
       <Footer></Footer>
     </div>
@@ -139,6 +146,10 @@ export default {
       }
       return {
         cart: cartItems,
+      }
+    } else {
+      return {
+        cart: [],
       }
     }
   },
