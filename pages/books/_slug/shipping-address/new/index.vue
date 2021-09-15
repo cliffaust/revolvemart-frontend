@@ -116,8 +116,8 @@ export default {
             Authorization: 'Token ' + Cookies.get('token'),
           },
         })
-        this.spinner = false
-        location.reload()
+        // location.reload()
+        this.$router.go(-1)
       } catch (error) {
         console.log(error.response.data)
         this.spinner = false

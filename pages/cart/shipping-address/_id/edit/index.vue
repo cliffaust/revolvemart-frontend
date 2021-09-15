@@ -120,7 +120,8 @@ export default {
           }
         )
 
-        location.reload()
+        // location.reload()
+        this.$router.go(-1)
       } catch (error) {
         this.spinner = false
         console.log(error.response.data)

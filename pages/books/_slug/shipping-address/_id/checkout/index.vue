@@ -234,8 +234,35 @@ export default {
       this.spinner = true
     },
 
-    callback(response) {
-      location.reload()
+    async callback(response) {
+      const formData = new FormData()
+      formData.append('paid', true)
+      formData.append('on_board', true)
+      try {
+        await axios.post(
+          `${process.env.baseUrl}/books/${this.$route.params.slug}/address/${this.$route.params.id}/add-to-order/`,
+          formData,
+          {
+            headers: {
+              Authorization: 'Token ' + Cookies.get('token'),
+            },
+          }
+        )
+        await axios.put(
+          `${process.env.baseUrl}/shipping-note/`,
+          { note: null },
+          {
+            headers: {
+              Authorization: 'Token ' + Cookies.get('token'),
+            },
+          }
+        )
+
+        this.$router.push('/orders')
+      } catch (error) {
+        console.log(error.response.data)
+        this.spinner = false
+      }
     },
     closePayment() {
       this.spinner = false
@@ -253,7 +280,7 @@ export default {
   border-radius: 1rem;
   margin: 0 auto 20px auto;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
   // flex-direction: column;
   padding: 1rem;
   position: relative;

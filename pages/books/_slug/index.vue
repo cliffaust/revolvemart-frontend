@@ -52,6 +52,7 @@
       <Button
         v-else
         button-class="btn-open"
+        :disabled="btnDisabled"
         :style="{ width: '45%' }"
         @click="addToCart"
         >Add to cart</Button
@@ -210,6 +211,7 @@ export default {
       rates: [5, 4, 3, 2, 1],
       spinner: false,
       showModal: false,
+      btnDisabled: false,
       // price:
       //   parseInt(
       //     this.bookDetail.discount_price.toString().replace('.', ''),
@@ -359,6 +361,7 @@ export default {
     },
 
     async addToCart() {
+      this.btnDisabled = true
       if (this.bookDetail.stock > 0) {
         await this.$store.dispatch('addToCart', this.$route.params.slug)
       }

@@ -116,7 +116,7 @@ export default {
           },
         })
 
-        location.reload()
+        this.$router.go(-1)
       } catch (error) {
         console.log(error.response.data)
       }

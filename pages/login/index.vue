@@ -58,13 +58,17 @@
           ><nuxt-link to="/signup" class="link">Register</nuxt-link>
         </div>
         <div class="login-btn">
-          <baseButton button-class="btn-secondary" @click="handleSubmit(login)"
-            ><div class="loading-content">
-              <div class="btn-login-text">Login</div>
-              <div v-if="loading" class="spin-container">
-                <div id="loader" class="spin"></div>
-              </div></div
-          ></baseButton>
+          <baseButton
+            :disabled="loading"
+            :button-class-disabled="loading ? 'btn-disabled' : ''"
+            button-class="btn-secondary"
+            @click="handleSubmit(login)"
+          >
+            <div v-if="!loading">Login</div>
+            <div v-if="loading" class="spinner">
+              <ButtonLoadingSpinner></ButtonLoadingSpinner>
+            </div>
+          </baseButton>
         </div>
       </ValidationObserver>
     </div>
@@ -76,11 +80,13 @@ import { mapState } from 'vuex'
 import navbar from '~/components/DefaultComponent/navbar.vue'
 import baseInput from '~/components/DefaultComponent/baseInput'
 import baseButton from '~/components/DefaultComponent/baseButton'
+import ButtonLoadingSpinner from '~/components/DefaultComponent/button-loading-spinner.vue'
 export default {
   components: {
     navbar,
     baseInput,
     baseButton,
+    ButtonLoadingSpinner,
   },
   data() {
     return {

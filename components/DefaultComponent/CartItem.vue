@@ -6,7 +6,7 @@
     <div class="description">
       <div class="title">{{ book.book.title }}</div>
       <div class="author">By {{ book.book.author }}</div>
-      <div class="quantity text-bold">{{ book.book.quantity }}</div>
+      <div class="quantity text-bold">{{ book.quantity }}</div>
 
       <div class="price-box">
         <div v-if="book.book.discount_price" class="new-price">

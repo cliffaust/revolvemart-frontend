@@ -1,7 +1,7 @@
 <template>
   <div v-if="user_profile">
     <NavBar></NavBar>
-    <div class="main-container">
+    <div v-if="shipping_address.length > 0" class="main-container">
       <div class="heading">Select a shipping address</div>
       <!-- <h3 v-if="defaultShippingAddress.length > 0">
         {{ defaultShippingAddress }}
@@ -109,7 +109,10 @@
           Add a new address
         </div>
       </nuxt-link>
-      <div class="select-address card">
+      <div
+        v-if="notDefaultShippingAddress.length > 0"
+        class="select-address card"
+      >
         <div
           class="select-address-heading"
           @click="showSelectAddress = !showSelectAddress"
@@ -143,6 +146,33 @@
               Phone number: {{ address.phone }}
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <div v-else>
+      <div class="no-address-container">
+        <div class="heading mt-1 ml-xs text-xl text-bold">
+          Add a shipping address
+        </div>
+        <div class="container">
+          <div class="image-box">
+            <img
+              class="image"
+              src="~/assets/illustrations/no-address.png"
+              alt="No Item in cart"
+            />
+          </div>
+          <div class="no-cart-heading mt-2 ml-xs text-xl text-bold">
+            No shipping address. Don't worry.
+          </div>
+          <nuxt-link
+            v-slot="{ href, navigate }"
+            custom
+            :to="{ path: 'new/' }"
+            append
+          >
+            <a :href="href" class="link" @click="navigate">Add a new address</a>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -285,9 +315,9 @@ export default {
     border-radius: 5px;
     position: relative;
 
-    &:hover {
-      background-color: #f4f4f4;
-    }
+    // &:hover {
+    //   background-color: #f4f4f4;
+    // }
 
     &:not(:last-child) {
       &::after {
@@ -304,6 +334,70 @@ export default {
     // &:not(:last-child) {
     //   border-bottom: 1px solid rgba(51, 51, 51, 0.233);
     // }
+  }
+}
+
+.no-address-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: scroll;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .no-cart-heading {
+      text-align: center;
+      font-family: $secondary-font-1;
+    }
+
+    .link {
+      font-size: 1.6rem;
+      margin: 1rem auto 0 auto;
+      text-decoration: none;
+      padding: 0.4rem 0;
+      font-weight: 700;
+      color: inherit;
+      position: relative;
+
+      &::after {
+        content: '';
+        width: 100%;
+        height: 3px;
+        background-color: #fca21146;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      &::before {
+        content: '';
+        width: 0%;
+        height: 3px;
+        background-color: #fca311;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        transition: 0.3s ease;
+      }
+
+      &:hover::before {
+        width: 100%;
+      }
+    }
+
+    .image-box {
+      width: 90%;
+      height: 250px;
+
+      .image {
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 }
 

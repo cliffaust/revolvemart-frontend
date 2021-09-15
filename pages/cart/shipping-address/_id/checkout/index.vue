@@ -10,7 +10,7 @@
         <div class="description">
           <div class="title">{{ book.book.title }}</div>
           <div class="author">By {{ book.book.author }}</div>
-          <div class="quantity text-bold">{{ book.book.quantity }}</div>
+          <div class="quantity text-bold">Quantity: {{ book.quantity }}</div>
 
           <div class="price-box">
             <div v-if="book.book.discount_price" class="new-price">
@@ -280,8 +280,43 @@ export default {
       this.spinner = true
     },
 
-    callback(response) {
-      location.reload()
+    async callback(response) {
+      const formData = new FormData()
+      formData.append('paid', true)
+      formData.append('on_board', true)
+      try {
+        for (const item of this.cart) {
+          await axios.post(
+            `${process.env.baseUrl}/books/${item.book.slug}/address/${this.$route.params.id}/add-to-order/`,
+            { ...formData, quantity: item.quantity },
+            {
+              headers: {
+                Authorization: 'Token ' + Cookies.get('token'),
+              },
+            }
+          )
+
+          await axios.delete(`${process.env.baseUrl}/user-cart/${item.id}/`, {
+            headers: {
+              Authorization: 'Token ' + this.$store.state.signin.token,
+            },
+          })
+        }
+        await axios.put(
+          `${process.env.baseUrl}/shipping-note/`,
+          { note: null },
+          {
+            headers: {
+              Authorization: 'Token ' + Cookies.get('token'),
+            },
+          }
+        )
+
+        this.$router.push('/orders')
+      } catch (error) {
+        console.log(error.response.data)
+        this.spinner = false
+      }
     },
     closePayment() {
       this.spinner = false

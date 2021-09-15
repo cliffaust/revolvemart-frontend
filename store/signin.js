@@ -79,7 +79,7 @@ export const actions = {
         }
         Cookies.remove('cart')
       }
-      this.$router.replace(payload.redirect, () => this.$router.go(0))
+      this.$router.replace(payload.redirect, () => location.reload())
     } catch (error) {
       commit('STOP_LOADING_STATE')
       commit('ADD_ERROR', error.response.data)
